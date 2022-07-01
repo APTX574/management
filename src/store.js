@@ -7,22 +7,22 @@ export default new Vuex.Store({
     state: { status: 0, temp: {} },
 
     mutations: {
-        toprofile(state) {
+        toProfile(state) {
             state.status = 0
         },
-        tobasic(state) {
+        toIncome(state) {
             state.status = 1
         },
-        togrades(state) {
+        toEnterIncome(state) {
             state.status = 2
         },
-        tolessons(state) {
+        toOutcome(state) {
             state.status = 3
         },
-        tosocial(state) {
+        toEnterOutcome(state) {
             state.status = 4
         },
-        towork(state) {
+        toSort(state) {
             state.status = 5
         },
         tophysicalquality(state) {

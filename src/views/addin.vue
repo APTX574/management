@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="40" align="middle">
-  <el-col :span="10"><div class="grid-content bg-purple">
+  <el-col :span="20"><div class="grid-content bg-purple">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
     <span>违约认定申请</span>
@@ -21,7 +21,7 @@
             <el-option label="转账" value="转账"></el-option>
             <el-option label="提现" value="提现"></el-option>
             <el-option label="理财" value="理财"></el-option>
-<el-option label="其他" value="其他"></el-option> 
+            <el-option label="其他" value="其他"></el-option>
           </el-select> </el-form-item>
 
           <el-form-item label="数目">

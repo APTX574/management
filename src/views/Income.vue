@@ -40,7 +40,7 @@
 // @ is an alias to /src
 
 export default {
-  name: "reason",
+  name: "Income",
   components: {},
   data() {
     return {

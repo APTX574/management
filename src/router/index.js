@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import index from '../views/index.vue'
 import register from '../views/register.vue'
-import lookin from '../views/lookin.vue'
+import Income from '../views/Income.vue'
 import login from '../views/login.vue'
 import profile from "../views/profile.vue"
 import addin from "../views/addin.vue"
@@ -31,9 +31,9 @@ const routes = [{
         component: index,
     },
     {
-        path: '/lookin',
-        name: 'lookin',
-        component: lookin
+        path: '/Income',
+        name: 'Income',
+        component: Income
     },
     {
         path: '/profile',

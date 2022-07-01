@@ -1,19 +1,17 @@
 <template>
-  <el-row :gutter="40" align="middle">
-  <el-col :span="10"><div class="grid-content bg-purple">
+  <el-row :gutter="50" align="middle">
+  <el-col :span="80"><div class="grid-content bg-purple">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-    <span>违约认定申请</span>
+    <span>支出</span>
   </div>
       <el-form ref="form" :model="form" label-width="100px" label-position="right">
-
-      
 
           <el-form-item label="支出类型">
           <el-select
             v-model="addout.type"
             placeholder="请选择支出类型"
-            style="width: 350px">
+            style="width: 700px">
             <el-option label="餐饮" value="餐饮"></el-option>
             <el-option label="购物" value="购物"></el-option>
             <el-option label="生活" value="生活"></el-option>
@@ -26,7 +24,7 @@
           <el-select
             v-model="addout.subtype"
             placeholder="请选择支出子分类"
-            style="width: 350px">
+            style="width: 700px">
             <el-option label="个人就餐" value="个人就餐" v-if="addout.type == '餐饮'"></el-option>
             <el-option label="外卖" value="外卖" v-if="addout.type == '餐饮'"></el-option>
             <el-option label="零食" value="零食" v-if="addout.type == '餐饮'"></el-option>
