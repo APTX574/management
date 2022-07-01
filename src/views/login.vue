@@ -4,30 +4,30 @@
       <el-card style="width: 400px">
         <h2>登录</h2>
         <el-form
-          ref="loginFormRef"
-          :model="form"
-          :rules="formRules"
-          label-width="80px"
+            ref="loginFormRef"
+            :model="form"
+            :rules="formRules"
+            label-width="80px"
         >
           <el-form-item prop="username" label="用户名">
             <el-input
-              v-model="form.username"
-              autocomplete="off"
-              placeholder="请输入用户名"
+                v-model="form.username"
+                autocomplete="off"
+                placeholder="请输入用户名"
             >
             </el-input>
           </el-form-item>
           <el-form-item prop="password" label="密码">
             <el-input
-              v-model="form.password"
-              autocomplete="off"
-              placeholder="请输入密码"
-              show-password
+                v-model="form.password"
+                autocomplete="off"
+                placeholder="请输入密码"
+                show-password
             >
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" round @click="login">登录 </el-button>
+            <el-button type="primary" round @click="login">登录</el-button>
             <el-button round @click="register">注册</el-button>
           </el-form-item>
         </el-form>
@@ -38,6 +38,8 @@
 
 <script>
 // @ is an alias to /src
+
+import axios from "axios";
 
 export default {
   name: "login",
@@ -50,10 +52,10 @@ export default {
       },
       formRules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "change" },
+          {required: true, message: "请输入用户名", trigger: "change"},
         ],
         password: [
-          { required: true, message: "请输入密码", trigger: "change" },
+          {required: true, message: "请输入密码", trigger: "change"},
         ],
       },
     };
@@ -76,11 +78,16 @@ export default {
       //     }
       //   }
       // });
-      if (this.form.username == 123 && this.form.password == 123) {
-        this.$router.push("/index");
-      } else {
-        return this.$message.error("用户名或密码错误!");
-      }
+      axios.post("/login", {
+        "username": this.$data.form.username,
+        "password": this.$data.form.password
+      }).then(data => {
+        if (data.code == 200) {
+          this.$router.push("/index");
+        } else {
+          return this.$message.error("用户名或密码错误!");
+        }
+      })
     },
     register() {
       this.$router.push("/register");
