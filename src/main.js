@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 // axios.defaults.withCredentials = false
-axios.defaults.baseURL = "http://47.96.72.124:8003/"
+axios.defaults.baseURL = "http://127.0.0.1:8080/"
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 

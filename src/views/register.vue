@@ -21,6 +21,8 @@
 <script>
 // @ is an alias to /src
 
+import axios from "axios";
+
 export default {
   name: "register",
   components: {},
@@ -34,8 +36,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      alert("创建成功");
-      this.$router.push("/index");
+      axios.post("/register", {
+        username: this.form.username,
+        password: this.form.password
+      }).then(data => {
+        console.log(data)
+        if (data.status === 200) {
+          alert("创建成功");
+          this.$router.push("/index");
+        }
+      })
     },
     onClick() {
       this.$router.push("/");
