@@ -6,7 +6,7 @@
     <lookout v-show="this.status == 3"></lookout>
     <addout v-show="this.status == 4"></addout>
     <statistic v-show="this.status == 5"></statistic>
-    <birthcheck v-show="this.status == 6"></birthcheck>
+    <setting v-show="this.status == 6"></setting>
     <addbirthcheck v-show="this.status == 7"></addbirthcheck>
     <skill v-show="this.status == 8"></skill>
   </div>
@@ -19,14 +19,14 @@ import addin from "../views/addin.vue";
 import lookout from "../views/lookout.vue";
 import addout from "../views/addout.vue";
 import statistic from "../views/statistic.vue";
-import birthcheck from "../views/birthcheck.vue";
+import setting from "../views/setting.vue";
 import addbirthcheck from "../views/addbirthcheck.vue";
 import skill from "../views/skill.vue";
 import { mapState } from "vuex";
 
 export default {
   name: "indexMain",
-  components: {profile, Income,  addin, lookout, addout, statistic, birthcheck, addbirthcheck, skill },
+  components: {profile, Income,  addin, lookout, addout, statistic, setting, addbirthcheck, skill },
   data() {
     return {};
   },

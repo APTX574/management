@@ -1,15 +1,30 @@
 <template>
+  <div>
+    <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
+      <el-form-item label="当月剩余额度">
+        <el-input v-model="formInline.user" ></el-input>
+      </el-form-item>
+      <el-form-item label="设置当月额度">
+        <el-input v-model="formInline.region" placeholder="请设置当月额度"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">提交</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+<!--<template>
 <div>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
   <el-form-item label="客户名称">
     <el-input v-model="filter.name" placeholder="客户名称"></el-input>
   </el-form-item>
-  <!-- <el-form-item label="审核状态">
+   <el-form-item label="审核状态">
     <el-select v-model="filter.check" placeholder="审核状态">
       <el-option label="已审核" value="1"></el-option>
       <el-option label="未审核" value="0"></el-option>
     </el-select>
-  </el-form-item> -->
+  </el-form-item>
   <el-form-item>
     <el-button type="primary" @click="check">查询</el-button>
   </el-form-item>
@@ -53,7 +68,7 @@
           </el-form-item>
 
 
-          
+
         </el-form>
       </template>
     </el-table-column>
@@ -94,16 +109,15 @@
   </el-table>
 
 </div>
-  
 
-</template>
+</template>-->
 
 <script>
 // @ is an alias to /src
 import axios from 'axios';
 
 export default {
-  name: "birthcheck",
+  name: "setting",
   components: {},
   data() {
     return {

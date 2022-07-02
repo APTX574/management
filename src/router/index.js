@@ -9,7 +9,7 @@ import addin from "../views/addin.vue"
 import lookout from "../views/lookout.vue"
 import addout from "../views/addout.vue"
 import statistic from "../views/statistic.vue"
-import birthcheck from "../views/birthcheck.vue"
+import setting from "../views/setting.vue"
 import addbirthcheck from "../views/addbirthcheck.vue"
 import skill from "../views/skill.vue"
 
@@ -61,9 +61,9 @@ const routes = [{
         component: statistic
     },
     {
-        path: '/birthcheck',
-        name: 'birthcheck',
-        component: birthcheck
+        path: '/setting',
+        name: 'setting',
+        component: setting
     },
     {
         path: '/addbirthcheck',

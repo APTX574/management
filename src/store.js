@@ -25,7 +25,7 @@ export default new Vuex.Store({
         toSort(state) {
             state.status = 5
         },
-        tophysicalquality(state) {
+        toSetting(state) {
             state.status = 6
         },
         toeconomy(state) {

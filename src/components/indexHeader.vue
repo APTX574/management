@@ -1,5 +1,5 @@
 <template>
-  <div class="head"><div class="tag"><strong><font  size="5">个人主页</font></strong></div></div>
+  <div class="head"><div class="tag"><strong><font  size="5">管家婆收支管理</font></strong></div></div>
 
 </template>
 
