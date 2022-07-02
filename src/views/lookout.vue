@@ -9,7 +9,7 @@
 
       <el-table-column
           fixed
-          prop="time"
+          prop="createTime"
           label="时间"
           width="150">
       </el-table-column>
@@ -26,7 +26,7 @@
       </el-table-column>
       <el-table-column
           fixed
-          prop="dtltype"
+          prop="sort"
           label="详细类型"
           width="150">
       </el-table-column>
@@ -69,7 +69,7 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [{time: "", type: "", object: "", dtltype: "", number: "", text: ""}]
+      tableData: [{createTime: "", type: "", object: "", sort: "", number: "", text: ""}]
     };
   },
 

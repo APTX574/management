@@ -99,9 +99,6 @@
             </el-form-item>
             <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
 
-            <el-form-item label="数目">
-              <el-input v-model="addout.numbers"></el-input>
-            </el-form-item>
             <el-form-item label="时间">
               <div class="block">
                 <el-date-picker
@@ -144,6 +141,7 @@ export default {
         subtype: "",
         numbers: "",
         time: "",
+        way:"",
         location: "",
         beizhu: ""
       },
@@ -157,6 +155,7 @@ export default {
             sort: this.addout.subtype,
             time: this.addout.time,
             location: this.addout.location,
+            way:this.addout.way,
             beizhu: this.addout.beizhu,
             account: this.addout.numbers
           }
