@@ -2,7 +2,7 @@
   <div>
     <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
       <el-form-item label="当月剩余额度">
-        <el-input v-model="formInline.user" ></el-input>
+        <el-input v-model="formInline.user"></el-input>
       </el-form-item>
       <el-form-item label="设置当月额度">
         <el-input v-model="formInline.region" placeholder="请设置当月额度"></el-input>
@@ -121,84 +121,88 @@ export default {
   components: {},
   data() {
     return {
+      formInline: {}
+      ,
       filter: {
-          name: '',
-          check: ''
-        },
+        name: '',
+        check: ''
+      },
       tableData: [],
-      
+
     };
   },
   methods: {
-    check(){
-    
-axios.post(
-      "/get"
-      ,{
-          "status": "remake_unconfirmed"
-        }
-        // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-      )
-        .then(res=>{
-            var a =JSON.parse(res.request.response)
-            var tableData = a.data.contractList
-            console.log(tableData)
-            var len = tableData.length
-            var checkname = this.filter.name
-            var array = []
-            for(var i =0;i<len;i++){
-              tableData[i].seriousness = "低"
-              tableData[i].beizhu = "无"
-              tableData[i].firmpeople = 'lmr'
-              if(tableData[i].userName ==checkname || checkname==''){
-                tableData[i].firmapplytime = "2022/06/29"        
-                tableData[i].firmchecktime = "2022/06/29"        
-                
-                array.push(tableData[i])
-              }
-            }
+    check() {
 
-            this.tableData = array
-            console.log(this.tableData)
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-        },
-    acceptrebirth(id){
       axios.post(
-      "/change"
-      ,{
-          "opt":"remake",
-          "id":id
+          "/get", {
+            "status": "remake_unconfirmed"
+          }
+          // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
+      ).then(res => {
+        var a = JSON.parse(res.request.response)
+        var tableData = a.data.contractList
+        console.log(tableData)
+        var len = tableData.length
+        var checkname = this.filter.name
+        var array = []
+        for (var i = 0; i < len; i++) {
+          tableData[i].seriousness = "低"
+          tableData[i].beizhu = "无"
+          tableData[i].firmpeople = 'lmr'
+          if (tableData[i].userName == checkname || checkname == '') {
+            tableData[i].firmapplytime = "2022/06/29"
+            tableData[i].firmchecktime = "2022/06/29"
+
+            array.push(tableData[i])
+          }
         }
-        // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-      )
-        .then(res=>{
-          console.log(JSON.parse(res.request.response))
-          alert("审核接受")
-        })
-        .catch(error=>{
-          console.log(error)
-        })
+
+        this.tableData = array
+        console.log(this.tableData)
+      })
+          .catch(error => {
+            console.log(error)
+          })
     },
-    refuserebirth(id){
-      axios.post(
-      "/change"
-      ,{
-          "opt":"refuse",
-          "id":id
-        }
-        // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-      )
-        .then(res=>{
-          console.log(JSON.parse(res.request.response))
-          alert("审核接受")
-        })
-        .catch(error=>{
-          console.log(error)
-        })
-    },
+    onSubmit() {
+
+    }
+
+    // acceptrebirth(id) {
+    //   axios.post(
+    //       "/change"
+    //       , {
+    //         "opt": "remake",
+    //         "id": id
+    //       }
+    //       // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
+    //   )
+    //       .then(res => {
+    //         console.log(JSON.parse(res.request.response))
+    //         alert("审核接受")
+    //       })
+    //       .catch(error => {
+    //         console.log(error)
+    //       })
+    // },
+    // refuserebirth(id) {
+    //   axios.post(
+    //       "/change"
+    //       , {
+    //         "opt": "refuse",
+    //         "id": id
+    //       }
+    //       // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
+    //   )
+    //       .then(res => {
+    //         console.log(JSON.parse(res.request.response))
+    //         alert("审核接受")
+    //       })
+    //       .catch(error => {
+    //         console.log(error)
+    //       })
+    // },
   },
 };
 </script>
@@ -208,15 +212,17 @@ axios.post(
 }
 
 .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
-  }
+  font-size: 0;
+}
+
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
 </style>

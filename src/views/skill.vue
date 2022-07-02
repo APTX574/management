@@ -6,7 +6,7 @@
       <div slot="header" class="clearfix">
     <span>技能证书</span>
     </div>
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form ref="form" :model="stu" label-width="80px">
         <el-form-item>
           <el-form-item label="奖项1">
           <el-input v-model="stu.identity"></el-input> </el-form-item>

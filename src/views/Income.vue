@@ -3,18 +3,19 @@
     :data="tableData"
     ref="multipleTable"
     border
-    style="width: 100%">
+    style="width: 80%">
+
     <el-table-column
-      fixed
-      prop="time"
-      label="时间"
-      width="150">
+        fixed
+        prop="time"
+        label="时间"
+        width="150">
     </el-table-column>
     <el-table-column
-      fixed
-      prop="type"
-      label="收入类型"
-      width="150">
+        fixed
+        prop="type"
+        label="收入类型"
+        width="150">
     </el-table-column>
     <el-table-column
       prop="object"
@@ -28,12 +29,12 @@
       >
     </el-table-column>
     <el-table-column
-      prop="text"
-      label="详细备注"
-      >
+        prop="beizhu"
+        label="详细备注"
+    >
     </el-table-column>
-    
-    
+
+
   </el-table>
 </template>
 
@@ -48,39 +49,17 @@ export default {
       tableData: []
     };
   },
-  mounted() {
-    
-  },
   methods: {
-    
+    onSubmit() {
+      // const { data: res } = await this.$http.post(process.env.API_ROOT + "/", {
 
-    //提交
-    // async onSubmit() {
-    //   // const { data: res } = await this.$http.post(process.env.API_ROOT + "/", {
-    //   const { data: res } = await this.$http.post("/", {
-    //     stuname: this.stu.stuname,
-    //     identity: this.stu.identity,
-    //     school: this.stu.school,
-    //     studentnumber: this.stu.studentnumber,
-    //     birthday: this.stu.birthday,
-    //     enrollyear: this.stu.enrollyear,
-    //     gender: this.stu.gender,
-    //     isworked: this.stu.isworked,
-    //     politics: this.stu.politics,
-    //     nationality: this.stu.nationality,
-    //     place: this.stu.place,
-    //     religion: this.stu.religion,
-    //     phone: this.stu.phone,
-    //     qqnumber: this.stu.qqnumber,
-    //     email: this.stu.email,
-    //   });
-
-    //   if (res.errorCode === 0) {
-    //     this.$message.success("发布成功");
-    //   } else {
-    //     return this.$message.error("发布失败 标题、通知班级、内容不能为空");
-    //   }
-    // },
+      console.log(this.tableData)
+      // if (res.errorCode === 0) {
+      //   this.$message.success("发布成功");
+      // } else {
+      //   return this.$message.error("发布失败 标题、通知班级、内容不能为空");
+      // }
+    },
 
     //获取基本信息
     // async getBasicInfo() {

@@ -77,46 +77,45 @@
 </template>
 
 <script>
- import axios from 'axios'
-  export default {
-    data() {
-      return {
-        addin: {
-          reason:"",
-          numbers:"",
-          time:"",
-          way:"",
-          text:""
-        },
-      }
-    },
-    methods: {
-      
-      submitForm(){
-        
-         axios.post(
-       "/insert"
-       ,{
-           //userName:firmapply.name,
-           reason:this.addin.reason,
-           numbers:this.addin.numbers,
-           time:this.addin.time,
-           text:this.addin.beizhu
-         }
-          //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-       )
-         .then(res=>{
-             this.datas = JSON.parse(res.request.response)
-            
-         })
-         .catch(error=>{
-           console.log(error)
-         })
-        alert("提交成功")
-        }
-        
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      addin: {
+        reason: "",
+        numbers: "",
+        time: "",
+        text: ""
+      },
+
     }
+  },
+  methods: {
+
+    submitForm() {
+
+      axios.post(
+          "/insert/income", {
+            type: this.addin.reason,
+            account: this.addin.numbers,
+            time: this.addin.time,
+            beizhu: this.addin.beizhu
+          }
+          //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
+      )
+          .then(res => {
+            this.datas = JSON.parse(res.request.response)
+
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      alert("提交成功")
+    }
+
   }
+}
 </script>
 
 <style scoped>
