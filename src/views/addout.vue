@@ -83,6 +83,22 @@
           <el-input v-model="addout.numbers"></el-input>
         </el-form-item>
 
+        <el-form-item label="时间">
+          <div class="block">
+            <el-date-picker
+                v-model="addout.time"
+                align="right"
+                type="datetime"
+                placeholder="选择日期"
+                :picker-options="pickerOptions">
+            </el-date-picker>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="地点">
+          <el-input v-model="addout.location"></el-input>
+        </el-form-item>
+
         <el-form-item label="详细备注">
           <el-input v-model="addout.beizhu"></el-input>
         </el-form-item>
@@ -104,6 +120,8 @@
           type:"",
           subtype:"",
           numbers:"",
+          time:"",
+          location:"",
           beizhu:""
         },
       }
@@ -140,5 +158,8 @@
 <style scoped>
 .el-form-item {
   margin-bottom: 7px;
+}
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+  width: 220px;
 }
 </style>
