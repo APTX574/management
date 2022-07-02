@@ -3,11 +3,11 @@
     :data="tableData"
     ref="multipleTable"
     border
-    style="width: 80%">
+    style="width: 100%">
     <el-table-column
       fixed
-      prop="number"
-      label="序号"
+      prop="time"
+      label="时间"
       width="150">
     </el-table-column>
     <el-table-column
@@ -17,17 +17,18 @@
       width="150">
     </el-table-column>
     <el-table-column
+      prop="object"
+      label="对象"
+      width="150">
+    </el-table-column>
+    <el-table-column
       prop="number"
       label="数目"
-      width="200">
+      width="200"
+      >
     </el-table-column>
     <el-table-column
-      prop="time"
-      label="时间"
-      width="200">
-    </el-table-column>
-    <el-table-column
-      prop="beizhu"
+      prop="text"
       label="详细备注"
       >
     </el-table-column>

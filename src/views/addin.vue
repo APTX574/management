@@ -9,7 +9,7 @@
 
       
 
-          <el-form-item label="收入类型">
+        <el-form-item label="收入类型">
           <el-select
             v-model="addin.reason"
             placeholder="请选择收入类型"
@@ -22,11 +22,29 @@
             <el-option label="提现" value="提现"></el-option>
             <el-option label="理财" value="理财"></el-option>
             <el-option label="其他" value="其他"></el-option>
-          </el-select> </el-form-item>
+          </el-select>
+        </el-form-item>
 
-          <el-form-item label="数目">
+        <el-form-item label="数目">
           <el-input v-model="addin.numbers" placeholder="请输入消费额"></el-input>
         </el-form-item>
+
+        <el-form-item label="收入对象">
+          <el-select
+              v-model="addin.way"
+              placeholder="请输入收入对象"
+              style="width: 100%">
+            <el-option label="现金" value="现金"></el-option>
+            <el-option label="银行卡" value="银行卡"></el-option>
+            <el-option label="支付宝" value="支付宝"></el-option>
+            <el-option label="微信" value="微信"></el-option>
+            <el-option label="Paypal" value="Paypal"></el-option>
+            <el-option label="Visa" value="Visa"></el-option>
+            <el-option label="ApplePay" value="ApplePay"></el-option>
+            <el-option label="其他" value="其他"></el-option>
+          </el-select>
+        </el-form-item>
+        <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
 
         <el-form-item label="时间">
           <el-input v-model="addin.time"></el-input>
@@ -67,6 +85,7 @@
           reason:"",
           numbers:"",
           time:"",
+          way:"",
           text:""
         },
       }
