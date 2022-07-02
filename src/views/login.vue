@@ -78,11 +78,12 @@ export default {
       //     }
       //   }
       // });
+      console.log(this.$data.form.username)
       axios.post("/login", {
-        "username": this.$data.form.username,
-        "password": this.$data.form.password
+        username: this.$data.form.username,
+        password: this.$data.form.password
       }).then(data => {
-        if (data.code == 200) {
+        if (data.status == 200) {
           this.$router.push("/index");
         } else {
           return this.$message.error("用户名或密码错误!");
