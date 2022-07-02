@@ -47,16 +47,11 @@ export default {
       tableData: []
     };
   },
-  mounted() {
-
-  },
   methods: {
-
-
-    async onSubmit() {
+    onSubmit() {
       // const { data: res } = await this.$http.post(process.env.API_ROOT + "/", {
 
-console.log(this.tableData)
+      console.log(this.tableData)
       // if (res.errorCode === 0) {
       //   this.$message.success("发布成功");
       // } else {

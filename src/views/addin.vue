@@ -7,8 +7,6 @@
             <span>添加收入</span>
           </div>
           <el-form ref="form" :model="addin" label-width="100px" label-position="right">
-
-
             <el-form-item label="收入类型">
               <el-select
                   v-model="addin.reason"
@@ -24,11 +22,9 @@
                 <el-option label="其他" value="其他"></el-option>
               </el-select>
             </el-form-item>
-
             <el-form-item label="数目">
               <el-input v-model="addin.numbers" placeholder="请输入消费额"></el-input>
             </el-form-item>
-
             <el-form-item label="时间">
               <el-input v-model="addin.time"></el-input>
             </el-form-item>
@@ -40,20 +36,16 @@
                     align="right"
                     type="datetime"
                     placeholder="选择时间"
-                    >
+                >
                 </el-date-picker>
               </div>
-
             </el-form-item>
-
-
             <el-form-item label="详细备注">
               <el-input v-model="addin.text"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm">提交</el-button>
             </el-form-item>
-
           </el-form>
         </el-card>
       </div>
@@ -81,13 +73,11 @@ export default {
     submitForm() {
 
       axios.post(
-          "/insert"
-          , {
-            //userName:firmapply.name,
-            reason: this.addin.reason,
-            numbers: this.addin.numbers,
+          "/insert/income", {
+            type: this.addin.reason,
+            account: this.addin.numbers,
             time: this.addin.time,
-            text: this.addin.beizhu
+            beizhu: this.addin.beizhu
           }
           //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
       )
