@@ -9,7 +9,7 @@
 
     <el-table-column
         fixed
-        prop="time"
+        prop="createTime"
         label="时间"
         width="150">
     </el-table-column>
@@ -26,7 +26,7 @@
         :filter-method="filterType">
     </el-table-column>
     <el-table-column
-      prop="object"
+      prop="way"
       label="对象"
       width="150"
       :filters="[{text: '现金', value: '现金'},
@@ -38,14 +38,14 @@
       filter-placement="bottom-end">
     </el-table-column>
     <el-table-column
-      prop="number"
+      prop="account"
       label="数目"
       :formatter="formatter"
       width="200"
       >
     </el-table-column>
     <el-table-column
-        prop="text"
+        prop="beizhu"
         label="详细备注"
     >
     </el-table-column>
@@ -60,7 +60,7 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [{time:"",type:"",object:"",number:"",text:""}]
+      tableData: [{createTime:"",type:"",way:"",account:"",beizhu:""}]
     };
   },
   methods: {

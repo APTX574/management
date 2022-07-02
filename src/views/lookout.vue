@@ -11,13 +11,14 @@
           fixed
           prop="createTime"
           label="时间"
-          width="150">
+          :formatter="formatTime"
+          width="200">
       </el-table-column>
       <el-table-column
           fixed
           prop="type"
           label="支出类型"
-          width="150"
+          width="100"
           :filters="[{text: '餐饮', value: '餐饮'},
           {text: '购物', value: '购物'}, {text: '生活', value: '生活'},
           {text: '出行', value: '出行'},{text: '大件消费', value: '大件消费'},
@@ -28,12 +29,12 @@
           fixed
           prop="sort"
           label="详细类型"
-          width="150">
+          width="100">
       </el-table-column>
       <el-table-column
-          prop="object"
+          prop="way"
           label="对象"
-          width="150"
+          width="100"
           :filters="[{text: '现金', value: '现金'},
         {text: '银行卡', value: '银行卡'}, {text: '支付宝', value: '支付宝'},
         {text: '微信', value: '微信'},{text: 'Paypal', value: 'Paypal'},
@@ -43,13 +44,18 @@
           filter-placement="bottom-end">
       </el-table-column>
       <el-table-column
-          prop="number"
+          prop="account"
           label="数目"
           width="200"
       >
       </el-table-column>
       <el-table-column
-          prop="text"
+          prop="location"
+          label="地点"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="beizhu"
           label="详细备注"
       >
       </el-table-column>
@@ -69,12 +75,39 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [{createTime: "", type: "", object: "", sort: "", number: "", text: ""}]
+      tableData: [{createTime: "", type: "", way: "", sort: "", account: "", text: ""}]
     };
   },
 
 
   methods: {
+    formatTime(row,column){
+      let data = row[column.property]
+      let dtime = new Date(data)
+      const year = dtime.getFullYear()
+      let month = dtime.getMonth() + 1
+      if (month < 10) {
+        month = '0' + month
+      }
+      let day = dtime.getDate()
+      if (day < 10) {
+        day = '0' + day
+      }
+      let hour = dtime.getHours()
+      if (hour < 10) {
+        hour = '0' + hour
+      }
+      let minute = dtime.getMinutes()
+      if (minute < 10) {
+        minute = '0' + minute
+      }
+      let second = dtime.getSeconds()
+      if (second < 10) {
+        second = '0' + second
+      }
+      return year+ '-' + month+ '-' + day + ' ' + hour + ':' + minute + ':' + second
+
+    },
     clearFilter() {
       this.$refs.multipleTable.clearFilter();
     },
