@@ -28,14 +28,14 @@
             <el-form-item label="时间">
               <el-input v-model="addin.time"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item label="消费时间">
               <div class="block">
-                <span class="demonstration">消费时间</span>
                 <el-date-picker
                     v-model="addin.time"
                     align="right"
                     type="datetime"
                     placeholder="选择时间"
+                    style="width:100%"
                 >
                 </el-date-picker>
               </div>

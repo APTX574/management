@@ -1,6 +1,6 @@
 <template>
-  <el-row :gutter="50" align="middle">
-    <el-col :span="80">
+  <el-row :gutter="40" align="middle">
+    <el-col :span="20">
       <div class="grid-content bg-purple">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
@@ -11,7 +11,7 @@
               <el-select
                   v-model="addout.type"
                   placeholder="请选择支出类型"
-                  style="width: 700px">
+                  style="width: 100%">
                 <el-option label="餐饮" value="餐饮"></el-option>
                 <el-option label="购物" value="购物"></el-option>
                 <el-option label="生活" value="生活"></el-option>
@@ -24,7 +24,7 @@
               <el-select
                   v-model="addout.subtype"
                   placeholder="请选择支出子分类"
-                  style="width: 700px">
+                  style="width: 100%">
                 <el-option label="个人就餐" value="个人就餐" v-if="addout.type == '餐饮'"></el-option>
                 <el-option label="外卖" value="外卖" v-if="addout.type == '餐饮'"></el-option>
                 <el-option label="零食" value="零食" v-if="addout.type == '餐饮'"></el-option>
@@ -80,6 +80,7 @@
             <el-form-item label="时间">
               <div class="block">
                 <el-date-picker
+                    style="width:100%"
                     v-model="addout.time"
                     align="right"
                     type="datetime"
