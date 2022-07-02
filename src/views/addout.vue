@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="50" align="middle">
-  <el-col :span="81"><div class="grid-content bg-purple">
+  <el-col :span="80"><div class="grid-content bg-purple">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
     <span>支出</span>
