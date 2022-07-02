@@ -1,16 +1,6 @@
 <template>
 <div>
-  <h1>月度账单</h1><el-button type="primary" round>账单导出</el-button><el-row>
-  
-</el-row>
-  <img src="https://s1.ax1x.com/2022/07/01/jlGWOH.png" alt="jlGWOH.png" border="0" width="800" height="800"/>
-  <h1>日度账单</h1><el-button type="primary" round>账单导出</el-button><el-row>
-  
-</el-row>
-<img src="https://s1.ax1x.com/2022/07/01/jlJmA1.png" alt="jlJmA1.png" border="0" width="800" height="800"/>
-
-<h1>本月收入/支出类别统计</h1>
-<img src="https://s1.ax1x.com/2022/07/01/jlYGxU.png" alt="jlYGxU.png" border="0" width="800" height="1400"/>
+  <div style="height: 300px;width: 100%"  ref="myChart" ></div>
 
 </div>
   
@@ -20,6 +10,7 @@
 <script>
 // @ is an alias to /src
 // import axios from 'axios';
+
 export default {
   name: "birthapply",
   components: {},
@@ -32,6 +23,33 @@ export default {
       tableData: [],
       
     };
+  },
+  mounted() {
+    // 1.配置图表的数据和参数
+    let option = {
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+      }]
+    }
+
+    // 2.创建图表
+    let chart =this.$echarts.init(this.$refs.myChart)
+
+    // 3，导入图表的配置
+    chart.setOption(option)
+
+    // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+    window.addEventListener('resize', function () {
+      chart.resize()
+    })
   },
   methods: {
     check(){

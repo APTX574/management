@@ -5,6 +5,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import ElementUI from 'element-ui';
 import store from './store.js'
 import axios from 'axios'
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 
 // axios.defaults.withCredentials = false
