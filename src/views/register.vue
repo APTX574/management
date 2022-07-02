@@ -40,8 +40,8 @@ export default {
         username: this.form.username,
         password: this.form.password
       }).then(data => {
-
-        if (data.code === 200) {
+        console.log(data)
+        if (data.status === 200) {
           alert("创建成功");
           this.$router.push("/index");
         }
