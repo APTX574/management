@@ -5,7 +5,7 @@
       <div slot="header" class="clearfix">
     <span>支出</span>
   </div>
-      <el-form ref="form" :model="form" label-width="100px" label-position="right">
+      <el-form ref="form" :model="addout" label-width="100px" label-position="right">
 
           <el-form-item label="支出类型">
           <el-select
@@ -88,7 +88,7 @@
                 align="right"
                 type="datetime"
                 placeholder="选择日期"
-                :picker-options="pickerOptions">
+                >
             </el-date-picker>
           </div>
         </el-form-item>

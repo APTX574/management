@@ -37,9 +37,7 @@
       label="详细备注"
       >
     </el-table-column>
-    <as>
-      <alert_src_main asdasd="" asdas="">asdasdasd </alert_src_main>
-    </as>
+
     
   </el-table>
 </template>
