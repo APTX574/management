@@ -89,7 +89,7 @@ export default {
       const property = column['property'];
       return row[property] === value;
     },
-    get() {
+    getincome() {
       axios.post(
           "/get/output", {}
       ).then(data => {
@@ -98,7 +98,6 @@ export default {
           }
       )
     }
-
 
     //提交
     // async onSubmit() {
@@ -152,7 +151,7 @@ export default {
     // },
   },
   mounted() {
-    this.get()
+    this.getincome()
   },
 }
 </script>
