@@ -64,52 +64,6 @@
                 <el-option label="其他" value="其他" v-if="addout.type == '大件消费'"></el-option>
 
 
-            <el-option label="转账" value="转账" v-if="addout.type == '其他'"></el-option>
-            <el-option label="红包" value="红包" v-if="addout.type == '其他'"></el-option>
-            <el-option label="公益" value="公益" v-if="addout.type == '其他'"></el-option>
-            <el-option label="保险" value="保险" v-if="addout.type == '其他'"></el-option>
-            <el-option label="信用借还" value="信用借还" v-if="addout.type == '其他'"></el-option>
-            <el-option label="理财" value="理财" v-if="addout.type == '其他'"></el-option>
-            <el-option label="银行存储" value="银行存储" v-if="addout.type == '其他'"></el-option>
-
-           
-            <el-option label="其他" value="其他" v-if="addout.type == '其他'"></el-option>
-
-          </el-select>
-        </el-form-item>
-
-        <el-form-item label="数目">
-          <el-input v-model="addout.numbers"></el-input>
-        </el-form-item>
-
-        <el-form-item label="消费方式">
-          <el-select
-              v-model="addout.way"
-              placeholder="请输入消费方式"
-              style="width: 100%">
-            <el-option label="现金" value="现金"></el-option>
-            <el-option label="银行卡" value="银行卡"></el-option>
-            <el-option label="支付宝" value="支付宝"></el-option>
-            <el-option label="微信" value="微信"></el-option>
-            <el-option label="Paypal" value="Paypal"></el-option>
-            <el-option label="Visa" value="Visa"></el-option>
-            <el-option label="ApplePay" value="ApplePay"></el-option>
-            <el-option label="其他" value="其他"></el-option>
-          </el-select>
-        </el-form-item>
-        <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
-
-        <el-form-item label="时间">
-          <div class="block">
-            <el-date-picker
-                v-model="addout.time"
-                align="right"
-                type="datetime"
-                placeholder="选择日期"
-                :picker-options="pickerOptions">
-            </el-date-picker>
-          </div>
-        </el-form-item>
                 <el-option label="转账" value="转账" v-if="addout.type == '其他'"></el-option>
                 <el-option label="红包" value="红包" v-if="addout.type == '其他'"></el-option>
                 <el-option label="公益" value="公益" v-if="addout.type == '其他'"></el-option>
@@ -117,9 +71,34 @@
                 <el-option label="信用借还" value="信用借还" v-if="addout.type == '其他'"></el-option>
                 <el-option label="理财" value="理财" v-if="addout.type == '其他'"></el-option>
                 <el-option label="银行存储" value="银行存储" v-if="addout.type == '其他'"></el-option>
+
+
                 <el-option label="其他" value="其他" v-if="addout.type == '其他'"></el-option>
+
               </el-select>
             </el-form-item>
+
+            <el-form-item label="数目">
+              <el-input v-model="addout.numbers"></el-input>
+            </el-form-item>
+
+            <el-form-item label="消费方式">
+              <el-select
+                  v-model="addout.way"
+                  placeholder="请输入消费方式"
+                  style="width: 100%">
+                <el-option label="现金" value="现金"></el-option>
+                <el-option label="银行卡" value="银行卡"></el-option>
+                <el-option label="支付宝" value="支付宝"></el-option>
+                <el-option label="微信" value="微信"></el-option>
+                <el-option label="Paypal" value="Paypal"></el-option>
+                <el-option label="Visa" value="Visa"></el-option>
+                <el-option label="ApplePay" value="ApplePay"></el-option>
+                <el-option label="其他" value="其他"></el-option>
+              </el-select>
+            </el-form-item>
+            <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
+
             <el-form-item label="数目">
               <el-input v-model="addout.numbers"></el-input>
             </el-form-item>
@@ -183,24 +162,9 @@ export default {
           }
       ).then(data => {
         console.log(data)
-// import axios from 'axios'
-  export default {
-    data() {
-      return {
-        addout:{
-          type:"",
-          subtype:"",
-          numbers:"",
-          time:"",
-          way:"",
-          location:"",
-          beizhu:""
-        },
-      }
+      })
     },
-    methods: {
-
-      submitForm(){
+    submitFom() {
 
       //   axios.post(
       // "/insert"
@@ -220,18 +184,19 @@ export default {
       //   .catch(error=>{
       //     console.log(error)
       //   })
-        alert("提交成功")
-      })
+      alert("提交成功")
     }
-
   }
 }
+
+
 </script>
 
 <style scoped>
 .el-form-item {
   margin-bottom: 7px;
 }
+
 .el-date-editor.el-input, .el-date-editor.el-input__inner {
   width: 220px;
 }

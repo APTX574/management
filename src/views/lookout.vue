@@ -3,7 +3,7 @@
     :data="tableData"
     ref="multipleTable"
     border
-    style="width: 80%">
+    style="width: 100%">
     <el-table-column
         fixed
         prop="time"
