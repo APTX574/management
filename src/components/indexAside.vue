@@ -7,9 +7,9 @@
     </el-submenu>
     <el-submenu index="1">
       <template slot="title"><i class="el-icon-message"></i>功能</template>
-      <el-menu-item index="1-1" @click="toIncome">查看收入</el-menu-item>
+      <el-menu-item index="1-1" @click="toIncome" >查看收入</el-menu-item>
       <el-menu-item index="1-2" @click="toEnterIncome">添加收入</el-menu-item>
-      <el-menu-item index="1-3" @click="toOutcome">查看支出</el-menu-item>
+      <el-menu-item index="1-3" @click="toOutcome" >查看支出</el-menu-item>
       <el-menu-item index="1-4" @click="toEnterOutcome">添加支出</el-menu-item>
       <el-menu-item index="1-5" @click="toSort">统计</el-menu-item>
       <!-- <el-menu-item index="1-6" @click="tophysicalquality"
@@ -26,7 +26,12 @@
 export default {
   name: "indexAside",
   components: {},
+  data() {
+    return {
 
+
+    }
+  },
   methods: {
     toProfile() {
       this.$store.commit("toProfile");
@@ -36,15 +41,19 @@ export default {
     },
     toIncome() {
       this.$store.commit("toIncome");
+      this.status = 1
     },
     toEnterIncome() {
       this.$store.commit("toEnterIncome");
+      this.status = 2
     },
     toOutcome() {
       this.$store.commit("toOutcome");
+      this.status = 3
     },
     toEnterOutcome() {
       this.$store.commit("toEnterOutcome");
+      this.status = 4
     },
     toSort() {
       this.$store.commit("toSort");

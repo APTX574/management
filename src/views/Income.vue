@@ -7,7 +7,7 @@
         ref="multipleTable"
         border
         style="width: 100%"
-        >
+    >
 
       <el-table-column
           fixed
@@ -37,13 +37,13 @@
         {text: '微信', value: '微信'},{text: 'Paypal', value: 'Paypal'},
         {text: 'Visa', value: 'Visa'}, {text: 'ApplePay', value: 'ApplePay'},
         {text: '其他', value: '其他'}]"
-      :filter-method="filterObject"
-      filter-placement="bottom-end">
-    </el-table-column>
-    <el-table-column
-      prop="account"
-      label="金额（元）"
-      width="200"
+          :filter-method="filterObject"
+          filter-placement="bottom-end">
+      </el-table-column>
+      <el-table-column
+          prop="account"
+          label="金额（元）"
+          width="200"
       >
       </el-table-column>
       <el-table-column
@@ -72,22 +72,33 @@
 // @ is an alias to /src
 
 import axios from "axios";
+
 export default {
   name: "Income",
   components: {},
   data() {
     return {
-      tableData: [{createTime: "", type: "", way: "", account: "", beizhu: ""}]
+      tableData: [{createTime: "", type: "", way: "", account: "", beizhu: ""}],
+      props: {
+        status: -1
+      }
     };
   },
+  watch: {
+    props: {
+      deep:true, //深度监听设置为 true
+      handler:function(){
+        console.log(this.props.status)
+        this.get()
+      }
+
+
+    }
+  },
+
   mounted() {
-    axios.post(
-        "/get/income", {}
-    ).then(data => {
-          console.log(data)
-          this.tableData = data.data
-        }
-    )
+    console.log(this.props.status)
+    this.get()
   },
   methods: {
     handleSizeChange(val) {
@@ -96,7 +107,8 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     },
-    formatTime(row,column){
+    formatTime(row, column) {
+
       let data = row[column.property]
       let dtime = new Date(data)
       const year = dtime.getFullYear()
@@ -120,7 +132,7 @@ export default {
       if (second < 10) {
         second = '0' + second
       }
-      return year+ '-' + month+ '-' + day + ' ' + hour + ':' + minute + ':' + second
+      return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
 
     },
     clearFilter() {
@@ -147,6 +159,15 @@ export default {
       // } else {
       //   return this.$message.error("发布失败 标题、通知班级、内容不能为空");
       // }
+    },
+    get(){
+      axios.post(
+          "/get/income", {}
+      ).then(data => {
+            console.log(data)
+            this.tableData = data.data
+          }
+      )
     }
 
     //获取基本信息
