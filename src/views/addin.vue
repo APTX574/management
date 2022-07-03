@@ -107,8 +107,10 @@ export default {
             way:this.addin.way,
             beizhu: this.addin.beizhu
           }
-      ).then(res => {
-        console.log(res)
+          //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
+      )
+          .then(res => {
+            console.log(res)
 
       })
           .catch(error => {
