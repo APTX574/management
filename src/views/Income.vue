@@ -14,7 +14,7 @@
           prop="createTime"
           label="时间"
           :formatter="formatTime"
-          width="150">
+          width="225px">
       </el-table-column>
       <el-table-column
           fixed
