@@ -1,70 +1,83 @@
-<template><div>
-  <el-button @click="clearFilter">清除所有过滤器</el-button>
-  <el-table
-    :data="tableData"
-    height="250"
-    ref="multipleTable"
-    border
-    style="width: 100%">
+<template>
+  <div>
+    <el-button @click="clearFilter">清除所有过滤器</el-button>
+    <el-table
+        :data="tableData"
+        height="250"
+        ref="multipleTable"
+        border
+        style="width: 100%">
 
-    <el-table-column
-        fixed
-        prop="createTime"
-        label="时间"
-        width="150">
-    </el-table-column>
-    <el-table-column
-        fixed
-        prop="type"
-        label="收入类型"
-        width="150"
-        :filters="[{text: '工资', value: '工资'},
+      <el-table-column
+          fixed
+          prop="createTime"
+          label="时间"
+          width="150">
+      </el-table-column>
+      <el-table-column
+          fixed
+          prop="type"
+          label="收入类型"
+          width="150"
+          :filters="[{text: '工资', value: '工资'},
           {text: '红包', value: '红包'}, {text: '借贷', value: '借贷'},
           {text: '退款', value: '退款'},{text: '转账', value: '转账'},
           {text: '提现', value: '提现'}, {text: '理财', value: '理财'},
           {text: '其他', value: '其他'}]"
-        :filter-method="filterType">
-    </el-table-column>
-    <el-table-column
-      prop="way"
-      label="对象"
-      width="150"
-      :filters="[{text: '现金', value: '现金'},
+          :filter-method="filterType">
+      </el-table-column>
+      <el-table-column
+          prop="way"
+          label="对象"
+          width="150"
+          :filters="[{text: '现金', value: '现金'},
         {text: '银行卡', value: '银行卡'}, {text: '支付宝', value: '支付宝'},
         {text: '微信', value: '微信'},{text: 'Paypal', value: 'Paypal'},
         {text: 'Visa', value: 'Visa'}, {text: 'ApplePay', value: 'ApplePay'},
         {text: '其他', value: '其他'}]"
-      :filter-method="filterObject"
-      filter-placement="bottom-end">
-    </el-table-column>
-    <el-table-column
-      prop="account"
-      label="数目"
-      :formatter="formatter"
-      width="200"
+          :filter-method="filterObject"
+          filter-placement="bottom-end">
+      </el-table-column>
+      <el-table-column
+          prop="account"
+          label="数目"
+          :formatter="formatter"
+          width="200"
       >
-    </el-table-column>
-    <el-table-column
-        prop="beizhu"
-        label="详细备注"
-    >
-    </el-table-column>
-  </el-table>
-</div></template>
+      </el-table-column>
+      <el-table-column
+          prop="beizhu"
+          label="详细备注"
+      >
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
 
 <script>
 // @ is an alias to /src
+
+import axios from "axios";
 
 export default {
   name: "Income",
   components: {},
   data() {
     return {
-      tableData: [{createTime:"",type:"",way:"",account:"",beizhu:""}]
+      tableData: [{createTime: "", type: "", way: "", account: "", beizhu: ""}]
     };
   },
+  mounted() {
+    axios.post(
+        "/get/income", {}
+    ).then(data => {
+          console.log(data)
+          this.tableData = data.data
+        }
+    )
+  },
   methods: {
-    clearFilter(){
+    clearFilter() {
       this.$refs.multipleTable.clearFilter();
     },
     formatter(row) {

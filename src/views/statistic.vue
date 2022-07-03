@@ -1,9 +1,9 @@
 <template>
-<div>
-  <div style="height: 300px;width: 800px"  ref="myChart" ></div>
+  <div>
+    <div style="height: 300px;width: 800px" ref="myChart"></div>
 
-</div>
-  
+  </div>
+
 
 </template>
 
@@ -17,31 +17,35 @@ export default {
   data() {
     return {
       filter: {
-          name: '',
-          check: ''
-        },
+        name: '',
+        check: ''
+      },
       tableData: [],
-      
+
     };
   },
   mounted() {
     // 1.配置图表的数据和参数
     let option = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-      }]
+      series: [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: '55%',
+          roseType: 'angle',
+          data: [
+            {value: 235, name: '视频广告'},
+            {value: 274, name: '联盟广告'},
+            {value: 310, name: '邮件营销'},
+            {value: 335, name: '直接访问'},
+            {value: 400, name: '搜索引擎'}
+          ]
+        }
+      ]
     }
 
     // 2.创建图表
-    let chart =this.$echarts.init(this.$refs.myChart)
+    let chart = this.$echarts.init(this.$refs.myChart)
 
     // 3，导入图表的配置
     chart.setOption(option)
@@ -52,8 +56,8 @@ export default {
     })
   },
   methods: {
-    check(){
-    
+    check() {
+
 // axios.post(
 //       "/get"
 //       ,{
@@ -75,7 +79,7 @@ export default {
 //               if(tableData[i].userName ==checkname || checkname==''){
 //                 tableData[i].firmapplytime = "2022/06/29"        
 //                 tableData[i].firmchecktime = "2022/06/29"        
-                
+
 //                 array.push(tableData[i])
 //               }
 //             }
@@ -86,8 +90,8 @@ export default {
 //         .catch(error=>{
 //           console.log(error)
 //         })
-        },
-        
+    },
+
 
     //     axios.post(
     //     "/get/opt"
@@ -97,7 +101,7 @@ export default {
     // ).then(res=>{console.log(JSON.parse(res.request.response))
 
     // }).catch(error=>{console.log(error)})
-    
+
   },
 };
 </script>
@@ -107,15 +111,17 @@ export default {
 }
 
 .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
-  }
+  font-size: 0;
+}
+
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
 </style>

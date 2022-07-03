@@ -46,7 +46,7 @@
             </el-form-item>
             <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
 
-            <el-form-item label="时间" >
+            <el-form-item label="时间">
               <el-input v-model="addin.time"></el-input>
             </el-form-item>
             <el-form-item label="消费时间">
@@ -89,7 +89,7 @@ export default {
         reason: "",
         numbers: "",
         time: "",
-        text: ""
+        text: "",
       },
 
     }
@@ -105,12 +105,10 @@ export default {
             time: this.addin.time,
             beizhu: this.addin.beizhu
           }
-          //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-      )
-          .then(res => {
-            this.datas = JSON.parse(res.request.response)
+      ).then(res => {
+        console.log(res)
 
-          })
+      })
           .catch(error => {
             console.log(error)
           })
