@@ -1,11 +1,22 @@
 <template>
   <div>
     <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-      <el-form-item label="当月剩余额度">
+      <el-form-item label="本月剩余额度">
         <el-input v-model="formInline.user"></el-input>
       </el-form-item>
-      <el-form-item label="设置当月额度">
-        <el-input v-model="formInline.region" placeholder="请设置当月额度"></el-input>
+      <el-form-item label="设置本月额度">
+        <el-input v-model="formInline.month_money" placeholder="请设置本月额度"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">提交</el-button>
+      </el-form-item>
+    </el-form>
+    <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
+      <el-form-item label="今年剩余额度">
+        <el-input v-model="formInline.user"></el-input>
+      </el-form-item>
+      <el-form-item label="设置今年额度">
+        <el-input v-model="formInline.year_money" placeholder="请设置今年额度"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
@@ -121,11 +132,9 @@ export default {
   components: {},
   data() {
     return {
-      formInline: {}
-      ,
-      filter: {
-        name: '',
-        check: ''
+      formInline: {
+        month_money: '',
+        year_money: ''
       },
       tableData: [],
 
