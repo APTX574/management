@@ -11,14 +11,11 @@
 </el-descriptions>
 
 <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-  <el-form-item label="当月剩余额度">
-    <el-input v-model="formInline.user" ></el-input>
+  <el-form-item label="本月剩余额度">
+    <el-input v-model="formInline.month" ></el-input>
   </el-form-item>
-  <el-form-item label="设置当月额度">
-    <el-input v-model="formInline.region" placeholder="请设置当月额度"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="onSubmit">提交</el-button>
+  <el-form-item label="今年剩余额度">
+    <el-input v-model="formInline.year" ></el-input>
   </el-form-item>
 </el-form>
 
@@ -34,8 +31,8 @@ export default {
   data() {
     return {
         formInline: {
-          user: '5000',
-          region: ''
+          month: '5000',
+          year: '60000'
         }
       }
   },

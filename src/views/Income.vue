@@ -3,15 +3,17 @@
     <el-button @click="clearFilter">清除所有过滤器</el-button>
     <el-table
         :data="tableData"
-        height="250"
+        stripe
         ref="multipleTable"
         border
-        style="width: 100%">
+        style="width: 100%"
+        >
 
       <el-table-column
           fixed
           prop="createTime"
           label="时间"
+          :formatter="formatTime"
           width="150">
       </el-table-column>
       <el-table-column
@@ -50,7 +52,20 @@
           label="详细备注"
       >
       </el-table-column>
+
     </el-table>
+    <div class="block">
+      <span class="demonstration"></span>
+      <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -76,6 +91,39 @@ export default {
     )
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
+    formatTime(row,column){
+      let data = row[column.property]
+      let dtime = new Date(data)
+      const year = dtime.getFullYear()
+      let month = dtime.getMonth() + 1
+      if (month < 10) {
+        month = '0' + month
+      }
+      let day = dtime.getDate()
+      if (day < 10) {
+        day = '0' + day
+      }
+      let hour = dtime.getHours()
+      if (hour < 10) {
+        hour = '0' + hour
+      }
+      let minute = dtime.getMinutes()
+      if (minute < 10) {
+        minute = '0' + minute
+      }
+      let second = dtime.getSeconds()
+      if (second < 10) {
+        second = '0' + second
+      }
+      return year+ '-' + month+ '-' + day + ' ' + hour + ':' + minute + ':' + second
+
+    },
     clearFilter() {
       this.$refs.multipleTable.clearFilter();
     },

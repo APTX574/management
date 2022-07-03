@@ -60,8 +60,38 @@
       >
       </el-table-column>
 
+      <el-table-column
+          fixed="right"
+          label="操作"
+          width="160">
+        <template slot-scope="scope">
+          <el-button
+              size="small"
+              @click="handleEdit(scope.$index, scope.row)">
+            编辑
+          </el-button>
+          <el-button
+              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              type="danger"
+              size="small">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
 
     </el-table>
+    <div class="block">
+      <span class="demonstration"></span>
+      <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -81,6 +111,16 @@ export default {
 
 
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
+
     formatTime(row,column){
       let data = row[column.property]
       let dtime = new Date(data)
