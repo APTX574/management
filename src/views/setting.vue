@@ -1,27 +1,59 @@
 <template>
   <div>
-    <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-      <el-form-item label="本月剩余额度">
-        <el-input v-model="formInline.user"></el-input>
-      </el-form-item>
-      <el-form-item label="设置本月额度">
-        <el-input v-model="formInline.month_money" placeholder="请设置本月额度"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交</el-button>
-      </el-form-item>
-    </el-form>
-    <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-      <el-form-item label="今年剩余额度">
-        <el-input v-model="formInline.user"></el-input>
-      </el-form-item>
-      <el-form-item label="设置今年额度">
-        <el-input v-model="formInline.year_money" placeholder="请设置今年额度"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">提交</el-button>
-      </el-form-item>
-    </el-form>
+    <el-card class="box-card" style="width: 750px">
+    <div slot="header" class="clearfix" >
+      <span>额度设置</span>
+      <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
+    </div>
+      <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
+        <el-form-item label="本月剩余额度">
+          <el-input v-model="formInline.month" readonly="true"></el-input>
+        </el-form-item>
+        <el-form-item label="更改本月额度">
+          <el-input v-model="formInline.month_money" placeholder="请设置本月额度"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
+        <el-form-item label="今年剩余额度">
+          <el-input v-model="formInline.year" readonly="true"></el-input>
+        </el-form-item>
+
+        <el-form-item label="更改今年额度">
+          <el-input v-model="formInline.year_money" placeholder="请设置今年额度"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-card>
+
+
+    <el-card class="box-card" style="width: 750px">
+      <div slot="header" class="clearfix" >
+        <span>个人信息设置</span>
+        <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
+      </div>
+      <el-form :inline="true" :model="userkeysetting" class="demo-form-inline" style="margin-top:30px">
+        <el-form-item label="用户名">
+          <el-input v-model="userkeysetting.user" readonly="true"></el-input>
+        </el-form-item>
+        <el-form-item label="更改密码">
+          <el-input v-model="userkeysetting.key" placeholder="请设置新密码"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <el-form :inline="true" :model="usersetting" class="demo-form-inline" style="margin-top:30px">
+        <el-form-item label="更改号码">
+          <el-input v-model="usersetting.phonenumber" placeholder="请设置新手机号"></el-input>
+        </el-form-item>
+        <el-form-item label="更改住地">
+          <el-input v-model="usersetting.country" placeholder="请设置新居住地"></el-input>
+        </el-form-item>
+        <el-form-item label="更改地址">
+          <el-input v-model="usersetting.dirc" placeholder="请设置新联系地址"></el-input>
+        </el-form-item>
+        <el-form-item label="更改备注">
+          <el-input v-model="usersetting.beizhu" placeholder="请设置新备注"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 <!--<template>
@@ -134,9 +166,20 @@ export default {
     return {
       formInline: {
         month_money: '',
-        year_money: ''
+        year_money: '',
+        month: '5000',
+        year: '60000'
       },
-      tableData: [],
+      userkeysetting:{
+        user:'wqs',
+        key:''
+      },
+      usersetting:{
+        phonenumber:'',
+        country:'',
+        dirc:'',
+        beizhu:''
+      }
 
     };
   },
