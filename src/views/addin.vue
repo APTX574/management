@@ -25,7 +25,7 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="数目">
+            <el-form-item label="金额">
               <el-input v-model="addin.account" placeholder="请输入消费额"></el-input>
             </el-form-item>
 

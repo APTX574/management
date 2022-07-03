@@ -78,7 +78,7 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="数目">
+            <el-form-item label="金额">
               <el-input v-model="addout.numbers"></el-input>
             </el-form-item>
 
