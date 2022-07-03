@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="height: 300px;width: 800px" ref="myChart"></div>
+    <div style="height: 500px;width: 800px" ref="myChart"></div>
 
   </div>
 
@@ -39,7 +39,6 @@ export default {
                 name: '访问来源',
                 type: 'pie',
                 radius: '55%',
-                roseType: 'angle',
                 data:data,
                 itemStyle: {
                   emphasis: {
@@ -51,7 +50,7 @@ export default {
                     label:{
                       show: true,
                       //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
-                      formatter: '{b} : {c}元 ({d}%)' //只要百分比
+                      formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
                     },
                     labelLine :{show:true}
                   }

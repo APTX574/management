@@ -71,7 +71,7 @@
             编辑
           </el-button>
           <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              @click.native.prevent="deleteRow(scope.row.id)"
               type="danger"
               size="small">
             删除
@@ -117,11 +117,21 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
     },
-    deleteRow(index, rows) {
-      rows.splice(index, 1);
+    deleteRow(id) {
+      axios.post("/delete", {
+        "id": id
+      }).then(() => {
+
+
+        this.$message({
+          type: "success",
+          message: "删除成功"
+        })
+        this.getincome()
+      })
     },
 
-    formatTime(row,column){
+    formatTime(row, column) {
       let data = row[column.property]
       let dtime = new Date(data)
       const year = dtime.getFullYear()
@@ -145,7 +155,7 @@ export default {
       if (second < 10) {
         second = '0' + second
       }
-      return year+ '-' + month+ '-' + day + ' ' + hour + ':' + minute + ':' + second
+      return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
 
     },
     clearFilter() {
