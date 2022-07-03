@@ -64,12 +64,8 @@
           fixed="right"
           label="操作"
           width="160">
-        <template slot-scope="scope">
-          <el-button
-              size="small"
-              @click="handleEdit(scope.$index, scope.row)">
-            编辑
-          </el-button>
+        <template #default="scope">
+          <el-button @click="handleEdit(scope.row,scope.row.courseID)" type="text" size="small">编辑</el-button>
           <el-button
               @click.native.prevent="deleteRow(scope.row.id)"
               type="danger"
@@ -80,6 +76,58 @@
       </el-table-column>
 
     </el-table>
+
+    <!-- 弹窗 -->
+    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true">
+      <el-form :model="form"  label-width="120px">
+        <el-form-item label="时间">
+          <el-input v-model="form.createTime" v-show="dialogVisible" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="支出类型">
+          <el-input
+              v-model="form.type"
+              style="width: 80%"
+              :filters="[{text: '餐饮', value: '餐饮'},
+          {text: '购物', value: '购物'}, {text: '生活', value: '生活'},
+          {text: '出行', value: '出行'},{text: '大件消费', value: '大件消费'},
+          {text: '其他', value: '其他'}]"
+              :filter-method="filterType"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="详细类型">
+          <el-input v-model="form.sort" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="对象">
+          <el-input v-model="form.way" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="金额">
+          <el-input v-model="form.account" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="地点">
+          <el-input v-model="form.location" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="详细备注">
+          <el-input v-model="form.beizhu" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+                <span class="dialog-footer">
+                  <el-button @click="dialogVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="save" dialogVisible=false>确 定</el-button>
+                </span>
+      </template>
+    </el-dialog>
     <div class="block">
       <span class="demonstration"></span>
       <el-pagination
@@ -105,7 +153,10 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [{createTime: "", type: "", way: "", sort: "", account: "", text: ""}]
+      tableData: [{createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""}],
+      id:"",
+      form:{createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""},
+      dialogVisible: false,
     };
   },
 
@@ -121,8 +172,6 @@ export default {
       axios.post("/delete", {
         "id": id
       }).then(() => {
-
-
         this.$message({
           type: "success",
           message: "删除成功"
@@ -130,7 +179,29 @@ export default {
         this.getincome()
       })
     },
+    save() {
+      console.log(this.form)
+      if (this.id !== 0) {
+        axios.post("/update", this.form).then(res => {
+          console.log(res)
+          this.getincome()                   //更新数据
+          this.dialogVisible = false   //关闭弹窗
+        })
+      } else {
+        axios.post("/insert/output", this.form).then(res => {
+          console.log(res)
+          this.getincome()                   //更新数据
+          this.dialogVisible = false   //关闭弹窗
+        })
+      }
+    },
+    handleEdit(row, id) {
+      console.log(1)
+      this.form = JSON.parse(JSON.stringify(row))
+      this.dialogVisible = true
+      this.id = id
 
+    },
     formatTime(row, column) {
       let data = row[column.property]
       let dtime = new Date(data)
