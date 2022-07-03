@@ -353,7 +353,15 @@ export default {
     //     }
     //   }
     // }
-
+    getincome() {
+      axios.post(
+          "/get/output", {}
+      ).then(data => {
+            console.log(data)
+            this.tableData = data.data
+          }
+      )
+    }
   },
   mounted() {
     this.getincome()

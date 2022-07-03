@@ -4,7 +4,7 @@
       <div class="grid-content bg-purple">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>添加收入</span>
+            <span>></span>
           </div>
           <el-form ref="addin" :model="addin" label-width="100px" label-position="right">
 
