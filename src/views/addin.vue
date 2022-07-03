@@ -11,7 +11,7 @@
 
             <el-form-item label="收入类型">
               <el-select
-                  v-model="addin.reason"
+                  v-model="addin.type"
                   placeholder="请选择收入类型"
                   style="width: 100%">
                 <el-option label="工资" value="工资"></el-option>
@@ -25,8 +25,8 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="数目">
-              <el-input v-model="addin.numbers" placeholder="请输入消费额"></el-input>
+            <el-form-item label="金额">
+              <el-input v-model="addin.account" placeholder="请输入消费额"></el-input>
             </el-form-item>
 
             <el-form-item label="收入对象">
@@ -47,13 +47,13 @@
             <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
 
             <el-form-item label="时间" >
-              <el-input v-model="addin.time"></el-input>
+              <el-input v-model="addin.createTime"></el-input>
             </el-form-item>
             <el-form-item label="消费时间">
               <div class="block">
 
                 <el-date-picker
-                    v-model="addin.time"
+                    v-model="addin.createTime"
                     align="right"
                     type="datetime"
                     style="width:100%"
@@ -66,7 +66,7 @@
 
 
             <el-form-item label="详细备注">
-              <el-input v-model="addin.text"></el-input>
+              <el-input v-model="addin.beizhu"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="submitForm">提交</el-button>
@@ -86,10 +86,11 @@ export default {
   data() {
     return {
       addin: {
-        reason: "",
-        numbers: "",
-        time: "",
-        text: ""
+        type: "",
+        account: "",
+        way:"",
+        createTime: "",
+        beizhu: ""
       },
 
     }
@@ -100,9 +101,10 @@ export default {
 
       axios.post(
           "/insert/income", {
-            type: this.addin.reason,
-            account: this.addin.numbers,
-            time: this.addin.time,
+            type: this.addin.type,
+            account: this.addin.account,
+            createTime: this.addin.createTime,
+            way:this.addin.way,
             beizhu: this.addin.beizhu
           }
           //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
@@ -110,7 +112,7 @@ export default {
           .then(res => {
             console.log(res)
 
-          })
+      })
           .catch(error => {
             console.log(error)
           })

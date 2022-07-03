@@ -1,9 +1,9 @@
 <template>
-<div>
-  <div style="height: 300px;width: 800px"  ref="myChart" ></div>
+  <div>
+    <div style="height: 300px;width: 800px" ref="myChart"></div>
 
-</div>
-  
+  </div>
+
 
 </template>
 
@@ -11,37 +11,45 @@
 // @ is an alias to /src
 // import axios from 'axios';
 
+import axios from "axios";
+
 export default {
   name: "birthapply",
   components: {},
   data() {
     return {
       filter: {
-          name: '',
-          check: ''
-        },
+        name: '',
+        check: ''
+      },
       tableData: [],
-      
+
     };
   },
   mounted() {
+    axios.post(
+        "/get/sum", {}
+    ).then(data => {
+          console.log(data.data.data)
+          this.tableData = data.data.data
+      console.log(this.tableData)
+        }
+    )
     // 1.配置图表的数据和参数
     let option = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-      }]
+      series: [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: '55%',
+          roseType: 'angle',
+          data:this.tableData
+        }
+      ]
     }
 
     // 2.创建图表
-    let chart =this.$echarts.init(this.$refs.myChart)
+    let chart = this.$echarts.init(this.$refs.myChart)
 
     // 3，导入图表的配置
     chart.setOption(option)
@@ -52,8 +60,8 @@ export default {
     })
   },
   methods: {
-    check(){
-    
+    check() {
+
 // axios.post(
 //       "/get"
 //       ,{

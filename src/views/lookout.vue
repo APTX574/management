@@ -45,7 +45,7 @@
       </el-table-column>
       <el-table-column
           prop="account"
-          label="数目"
+          label="金额（元）"
           width="200"
       >
       </el-table-column>

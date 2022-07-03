@@ -5,7 +5,7 @@
       <div slot="header" class="clearfix">
     <span>违约重生申请</span>
   </div>
-      <el-form ref="form" :model="rebirthapply" label-width="100px" label-position="right">
+      <el-form ref="rebirthapply" :model="rebirthapply" label-width="100px" label-position="right">
 
       <el-form-item label="违约信息id">
           <el-input v-model="rebirthapply.id"></el-input>
