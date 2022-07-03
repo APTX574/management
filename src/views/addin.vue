@@ -6,7 +6,7 @@
           <div slot="header" class="clearfix">
             <span>添加收入</span>
           </div>
-          <el-form ref="form" :model="form" label-width="100px" label-position="right">
+          <el-form ref="addin" :model="addin" label-width="100px" label-position="right">
 
 
             <el-form-item label="收入类型">
