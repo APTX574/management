@@ -35,14 +35,14 @@
         {text: '微信', value: '微信'},{text: 'Paypal', value: 'Paypal'},
         {text: 'Visa', value: 'Visa'}, {text: 'ApplePay', value: 'ApplePay'},
         {text: '其他', value: '其他'}]"
-          :filter-method="filterObject"
-          filter-placement="bottom-end">
-      </el-table-column>
-      <el-table-column
-          prop="account"
-          label="数目"
-          :formatter="formatter"
-          width="200"
+      :filter-method="filterObject"
+      filter-placement="bottom-end">
+    </el-table-column>
+    <el-table-column
+      prop="account"
+      label="金额（元）"
+      :formatter="formatter"
+      width="200"
       >
       </el-table-column>
       <el-table-column
@@ -58,7 +58,6 @@
 // @ is an alias to /src
 
 import axios from "axios";
-
 export default {
   name: "Income",
   components: {},
