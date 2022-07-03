@@ -98,12 +98,12 @@ export default {
   methods: {
 
     submitForm() {
-
+      console.log(this.addin.createTime)
       axios.post(
           "/insert/income", {
             type: this.addin.type,
             account: this.addin.account,
-            createTime: this.addin.createTime,
+            time: this.addin.createTime,
             way:this.addin.way,
             beizhu: this.addin.beizhu
           }

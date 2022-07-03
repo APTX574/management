@@ -24,40 +24,40 @@ export default {
       },
       tableData: [],
 
+
     };
   },
   mounted() {
     axios.post(
         "/get/sum", {}
     ).then(data => {
-          console.log(data.data.data)
-          this.tableData = data.data.data
-      console.log(this.tableData)
+          data = data.data.data
+          let option = {
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                roseType: 'angle',
+                data:data,
+              }
+            ]
+          }
+
+          // 2.创建图表
+          let chart = this.$echarts.init(this.$refs.myChart)
+
+          // 3，导入图表的配置
+          chart.setOption(option)
+
+          // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+          window.addEventListener('resize', function () {
+            chart.resize()
+          })
         }
     )
     // 1.配置图表的数据和参数
-    let option = {
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: '55%',
-          roseType: 'angle',
-          data:this.tableData
-        }
-      ]
-    }
 
-    // 2.创建图表
-    let chart = this.$echarts.init(this.$refs.myChart)
-
-    // 3，导入图表的配置
-    chart.setOption(option)
-
-    // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
-    window.addEventListener('resize', function () {
-      chart.resize()
-    })
   },
   methods: {
     check() {
@@ -83,7 +83,7 @@ export default {
 //               if(tableData[i].userName ==checkname || checkname==''){
 //                 tableData[i].firmapplytime = "2022/06/29"        
 //                 tableData[i].firmchecktime = "2022/06/29"        
-                
+
 //                 array.push(tableData[i])
 //               }
 //             }
@@ -94,8 +94,8 @@ export default {
 //         .catch(error=>{
 //           console.log(error)
 //         })
-        },
-        
+    },
+
 
     //     axios.post(
     //     "/get/opt"
@@ -105,7 +105,7 @@ export default {
     // ).then(res=>{console.log(JSON.parse(res.request.response))
 
     // }).catch(error=>{console.log(error)})
-    
+
   },
 };
 </script>
@@ -115,15 +115,17 @@ export default {
 }
 
 .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
-  }
+  font-size: 0;
+}
+
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
 </style>
