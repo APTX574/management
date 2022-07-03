@@ -13,6 +13,7 @@
 
 import axios from "axios";
 
+
 export default {
   name: "birthapply",
   components: {},
@@ -40,8 +41,24 @@ export default {
                 radius: '55%',
                 roseType: 'angle',
                 data:data,
+                itemStyle: {
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  normal:{
+                    label:{
+                      show: true,
+                      //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                      formatter: '{b} : {c}元 ({d}%)' //只要百分比
+                    },
+                    labelLine :{show:true}
+                  }
+                }
               }
             ]
+
           }
 
           // 2.创建图表
