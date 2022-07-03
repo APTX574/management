@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div style="height: 300px;width: 800px" ref="myChart"></div>
+    <div style="height: 300px;width: 800px" ref="myChart1"></div>
+    <div style="height: 300px;width: 800px" ref="myChart2"></div>
 
   </div>
 
@@ -56,20 +57,43 @@ export default {
                     labelLine :{show:true}
                   }
                 }
+              },
+              {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                roseType: 'angle',
+                data:data,
+                itemStyle: {
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  normal:{
+                    label:{
+                      show: true,
+                      //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                      formatter: '{b} : {c}元 ({d}%)' //只要百分比
+                    },
+                    labelLine :{show:true}
+                  }
+                }
               }
             ]
 
           }
 
           // 2.创建图表
-          let chart = this.$echarts.init(this.$refs.myChart)
-
+          let chart1 = this.$echarts.init(this.$refs.myChart1)
+          let chart2 = this.$echarts.init(this.$refs.myChart2)
           // 3，导入图表的配置
-          chart.setOption(option)
-
+          chart1.setOption(option)
+          chart2.setOption(option)
           // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
           window.addEventListener('resize', function () {
-            chart.resize()
+            chart1.resize()
+            chart2.resize()
           })
         }
     )
