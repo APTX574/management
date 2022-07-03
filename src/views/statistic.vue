@@ -11,6 +11,8 @@
 // @ is an alias to /src
 // import axios from 'axios';
 
+import axios from "axios";
+
 export default {
   name: "birthapply",
   components: {},
@@ -25,6 +27,14 @@ export default {
     };
   },
   mounted() {
+    axios.post(
+        "/get/sum", {}
+    ).then(data => {
+          console.log(data.data.data)
+          this.tableData = data.data.data
+      console.log(this.tableData)
+        }
+    )
     // 1.配置图表的数据和参数
     let option = {
       series: [
@@ -33,13 +43,7 @@ export default {
           type: 'pie',
           radius: '55%',
           roseType: 'angle',
-          data: [
-            {value: 235, name: '视频广告'},
-            {value: 274, name: '联盟广告'},
-            {value: 310, name: '邮件营销'},
-            {value: 335, name: '直接访问'},
-            {value: 400, name: '搜索引擎'}
-          ]
+          data:this.tableData
         }
       ]
     }
@@ -79,7 +83,7 @@ export default {
 //               if(tableData[i].userName ==checkname || checkname==''){
 //                 tableData[i].firmapplytime = "2022/06/29"        
 //                 tableData[i].firmchecktime = "2022/06/29"        
-
+                
 //                 array.push(tableData[i])
 //               }
 //             }
@@ -90,8 +94,8 @@ export default {
 //         .catch(error=>{
 //           console.log(error)
 //         })
-    },
-
+        },
+        
 
     //     axios.post(
     //     "/get/opt"
@@ -101,7 +105,7 @@ export default {
     // ).then(res=>{console.log(JSON.parse(res.request.response))
 
     // }).catch(error=>{console.log(error)})
-
+    
   },
 };
 </script>
@@ -111,17 +115,15 @@ export default {
 }
 
 .demo-table-expand {
-  font-size: 0;
-}
-
-.demo-table-expand label {
-  width: 90px;
-  color: #99a9bf;
-}
-
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-}
+    font-size: 0;
+  }
+  .demo-table-expand label {
+    width: 90px;
+    color: #99a9bf;
+  }
+  .demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+  }
 </style>
