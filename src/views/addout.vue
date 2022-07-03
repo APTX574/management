@@ -162,6 +162,7 @@ export default {
       ).then(data => {
         console.log(data)
       })
+      alert("提交成功")
     },
     submitFom() {
 
@@ -183,7 +184,7 @@ export default {
       //   .catch(error=>{
       //     console.log(error)
       //   })
-      alert("提交成功")
+
     }
   }
 }

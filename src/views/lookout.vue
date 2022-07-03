@@ -60,6 +60,24 @@
       >
       </el-table-column>
 
+      <el-table-column
+          fixed="right"
+          label="操作"
+          width="160">
+        <template slot-scope="scope">
+          <el-button
+              size="small"
+              @click="handleEdit(scope.$index, scope.row)">
+            编辑
+          </el-button>
+          <el-button
+              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              type="danger"
+              size="small">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
 
     </el-table>
   </div>
@@ -81,6 +99,10 @@ export default {
 
 
   methods: {
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
+
     formatTime(row,column){
       let data = row[column.property]
       let dtime = new Date(data)

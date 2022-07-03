@@ -108,7 +108,7 @@ export default {
           //headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
       )
           .then(res => {
-            this.datas = JSON.parse(res.request.response)
+            console.log(res)
 
           })
           .catch(error => {
