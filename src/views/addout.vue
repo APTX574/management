@@ -79,6 +79,26 @@
             </el-form-item>
 
             <el-form-item label="金额">
+              <el-input placeholder="请输入消费额" v-model="addout.numbers" class="input-with-select">
+                <el-select
+                    v-model="addout.way"
+                    slot="prepend"
+                    placeholder="消费方式"
+                    style="width: 120px"
+                >
+                  <el-option label="现金" value="现金"></el-option>
+                  <el-option label="银行卡" value="银行卡"></el-option>
+                  <el-option label="支付宝" value="支付宝"></el-option>
+                  <el-option label="微信" value="微信"></el-option>
+                  <el-option label="Paypal" value="Paypal"></el-option>
+                  <el-option label="Visa" value="Visa"></el-option>
+                  <el-option label="ApplePay" value="ApplePay"></el-option>
+                  <el-option label="其他" value="其他"></el-option>
+                </el-select>
+              </el-input>
+            </el-form-item>
+
+            <!--<el-form-item label="金额">
               <el-input v-model="addout.numbers"></el-input>
             </el-form-item>
 
@@ -96,7 +116,7 @@
                 <el-option label="ApplePay" value="ApplePay"></el-option>
                 <el-option label="其他" value="其他"></el-option>
               </el-select>
-            </el-form-item>
+            </el-form-item>-->
             <!--{“现金”,“银行卡”,“支付宝”,“微信”,“Paypal”,“Visa”,“ApplePay”,“其他”}-->
 
             <el-form-item label="时间">

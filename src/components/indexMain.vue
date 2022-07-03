@@ -1,9 +1,9 @@
 <template>
   <div>
     <profile v-show="this.status == 0"></profile>
-    <Income v-show="this.status == 1"></Income>
-    <addin v-show="this.status == 2"></addin>
-    <lookout v-show="this.status == 3"></lookout>
+    <Income v-show="this.status == 1" ></Income>
+    <addin v-show="this.status == 2" ></addin>
+    <lookout v-show="this.status == 3" ></lookout>
     <addout v-show="this.status == 4"></addout>
     <statistic v-show="this.status == 5"></statistic>
     <setting v-show="this.status == 6"></setting>
@@ -22,15 +22,16 @@ import statistic from "../views/statistic.vue";
 import setting from "../views/setting.vue";
 import addbirthcheck from "../views/addbirthcheck.vue";
 import skill from "../views/skill.vue";
-import { mapState } from "vuex";
+import {mapState} from "vuex";
 
 export default {
   name: "indexMain",
-  components: {profile, Income,  addin, lookout, addout, statistic, setting, addbirthcheck, skill },
+  components: {profile, Income, addin, lookout, addout, statistic, setting, addbirthcheck, skill},
   data() {
-    return {};
+    return {
+    };
   },
-  computed: { ...mapState(["status"]) },
+  computed: {...mapState(["status"])},
 };
 </script>
 
