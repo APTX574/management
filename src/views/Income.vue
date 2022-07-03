@@ -3,10 +3,12 @@
     <el-button @click="clearFilter">清除所有过滤器</el-button>
     <el-table
         :data="tableData"
+        stripe
         height="250"
         ref="multipleTable"
         border
-        style="width: 100%">
+        style="width: 100%"
+        >
 
       <el-table-column
           fixed
@@ -51,6 +53,18 @@
           label="详细备注"
       >
       </el-table-column>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400">
+        </el-pagination>
+      </div>
     </el-table>
   </div>
 </template>
@@ -77,6 +91,12 @@ export default {
     )
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
     formatTime(row,column){
       let data = row[column.property]
       let dtime = new Date(data)
