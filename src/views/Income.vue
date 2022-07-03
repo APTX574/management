@@ -43,7 +43,6 @@
     <el-table-column
       prop="account"
       label="金额（元）"
-      :formatter="formatter"
       width="200"
       >
       </el-table-column>
