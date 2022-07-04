@@ -2,11 +2,12 @@
   <div>
     <el-card class="box-card" shadow="hover">
     <div>
-      <el-avatar src="https://empty" @error="errorHandler" :size="120">
-        <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+      <el-avatar src="https://empty" @error="errorHandler" :size="150">
+<!--        <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>-->
+        <img src="http://mms2.baidu.com/it/u=894407319,2224568974&fm=253&app=120&f=JPEG&fmt=auto&q=75?w=293&h=310"/>
       </el-avatar>
     </div>
-      <h2>{{"wqs"}}</h2>
+      <h2>{{"塔菲"}}</h2>
 
       <el-descriptions  direction="vertical" :column="4" border>
 
