@@ -7,7 +7,7 @@
     </div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
         <el-form-item label="本月设置额度">
-          <el-input v-model="formInline.month" readonly="true"></el-input>
+          <el-input v-model="formInline.month" :readonly="true"></el-input>
         </el-form-item>
         <el-form-item label="更改本月额度">
           <el-input v-model="formInline.month_money" placeholder="请设置本月额度"></el-input>
@@ -15,7 +15,7 @@
       </el-form>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
         <el-form-item label="今年设置额度">
-          <el-input v-model="formInline.year" readonly="true"></el-input>
+          <el-input v-model="formInline.year" :readonly="true"></el-input>
         </el-form-item>
 
         <el-form-item label="更改今年额度">
@@ -33,7 +33,7 @@
       </div>
       <el-form :inline="true" :model="userkeysetting" class="demo-form-inline" style="margin-top:30px">
         <el-form-item label="用户名">
-          <el-input v-model="userkeysetting.user" readonly="true"></el-input>
+          <el-input v-model="userkeysetting.user" :readonly="true"></el-input>
         </el-form-item>
         <el-form-item label="更改密码">
           <el-input v-model="userkeysetting.key" placeholder="请设置新密码"></el-input>

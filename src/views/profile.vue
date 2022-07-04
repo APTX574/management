@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card" shadow="hover">
+    <el-card class="box-card" shadow="hover" style="width: 75%">
     <div>
       <el-avatar src="https://empty" @error="errorHandler" :size="150">
 <!--        <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>-->
@@ -21,10 +21,10 @@
 
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
         <el-form-item label="本月剩余额度">
-          <el-input v-model="formInline.month" readonly="true"></el-input>
+          <el-input v-model="formInline.month" :readonly='true'></el-input>
         </el-form-item>
         <el-form-item label="今年剩余额度">
-          <el-input v-model="formInline.year" readonly="true"></el-input>
+          <el-input v-model="formInline.year" :readonly='true'></el-input>
         </el-form-item>
       </el-form>
     </el-card>

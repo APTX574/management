@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card shadow="hover">
+    <el-card shadow="hover" style="width: 850px">
       <div slot="header" class="clearfix">
         <h3>整体收支一览</h3>
       </div>
@@ -26,7 +26,7 @@
 
     </el-card>
     <div style="margin: 15px 0;"></div>
-    <el-card shadow="hover">
+    <el-card shadow="hover" style="width: 850px">
       <div slot="header" class="clearfix">
         <span><h3>月份收支趋势</h3></span>
       </div>
@@ -42,7 +42,7 @@
       <div style="height: 500px;width: 800px" ref="myChart2"></div>
     </el-card>
     <div style="margin: 15px 0;"></div>
-    <el-card shadow="hover">
+    <el-card shadow="hover" style="width: 850px">
       <div slot="header" class="clearfix">
         <span><h3>明细类目筛选</h3></span>
       </div>
