@@ -172,7 +172,7 @@ export default {
       axios.post(
           "/insert/outcome", {
             type: this.addout.type,
-            sort: this.addout.subtype,
+            subtype: this.addout.subtype,
             time: this.addout.time,
             location: this.addout.location,
             way:this.addout.way,

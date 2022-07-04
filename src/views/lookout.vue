@@ -3,6 +3,7 @@
     <el-button @click="clearFilter">清除所有过滤器</el-button>
     <el-table
         :data="tableData"
+        stripe
         ref="multipleTable"
         border
         style="width: 100%">
@@ -78,7 +79,7 @@
     </el-table>
 
     <!-- 弹窗 -->
-    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true">
+    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true" show-close="false">
       <el-form :model="form" label-width="120px">
         <el-form-item label="时间">
           <div class="block">
