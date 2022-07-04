@@ -106,7 +106,6 @@
 <!--          <el-input v-model="form.createTime" v-show="dialogVisible" style="width: 80%"></el-input>-->
 <!--        </el-form-item>-->
 <!--      </el-form>-->
-
       <el-form :model="form" label-width="120px">
         <el-form-item label="支出类型">
           <el-select

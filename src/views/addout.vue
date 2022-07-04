@@ -4,10 +4,21 @@
       <div class="grid-content bg-purple">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>支出</span>
+            <span>添加支出</span>
           </div>
+
           <el-form ref="form" :model="addout" label-width="100px" label-position="right">
+
             <el-form-item label="支出类型">
+              <el-cascader
+                  v-model="addout.value"
+                  :options="addout.options"
+                  @change="handleChange"
+                  style="width: 100%">
+              </el-cascader>
+            </el-form-item>
+
+<!--            <el-form-item label="支出类型">
               <el-select
                   v-model="addout.type"
                   placeholder="请选择支出类型"
@@ -76,7 +87,7 @@
                 <el-option label="其他" value="其他" v-if="addout.type == '其他'"></el-option>
 
               </el-select>
-            </el-form-item>
+            </el-form-item>-->
 
             <el-form-item label="金额">
               <el-input placeholder="请输入消费额" v-model="addout.numbers" class="input-with-select">
@@ -140,13 +151,6 @@
               <el-input v-model="addout.beizhu"></el-input>
             </el-form-item>
 
-            <div class="block">
-              <span class="demonstration">支出类型</span>
-              <el-cascader
-                  v-model="addout.type"
-                  :options="addout.options"
-                  @change="handleChange"></el-cascader>
-            </div>
 
             <el-form-item>
               <el-button type="primary" @click="submitForm">提交</el-button>
@@ -166,7 +170,7 @@ export default {
   data() {
     return {
       addout: {
-        type: [],
+        value: [],
         options: [{
           value: '餐饮',
           label: '餐饮',
@@ -331,8 +335,8 @@ export default {
     submitForm() {
       axios.post(
           "/insert/outcome", {
-            type: this.addout.type,
-            subtype: this.addout.subtype,
+            type: this.addout.value[0],
+            subtype: this.addout.value[1],
             time: this.addout.time,
             location: this.addout.location,
             way:this.addout.way,
