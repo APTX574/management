@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
+    <el-button @click="getoutput">刷新</el-button>
     <el-button type="primary" @click="exp">导出</el-button>
     <el-table
         :data="tableData"
@@ -361,7 +362,7 @@ export default {
       )
     },
     exp() {
-      window.open("http://localhost:8080/download")
+      window.open("http://47.96.72.124:8080/download")
     }
   },
   mounted() {
