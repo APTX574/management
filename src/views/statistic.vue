@@ -22,12 +22,14 @@
         <span>in_out_type_cof</span>
       </div>
       <div class="block">
-        <span class="demonstration">choose_month_to_cof</span>
+        <span class="demonstration">choose_time_range_to_cof</span>
         <el-date-picker
-            v-model="choice.month"
-            type="month"
-            placeholder="选择月">
+            v-model="choice.time"
+            type="daterange"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期">
         </el-date-picker>
+
       </div>
     </el-card>
 
@@ -55,13 +57,10 @@ export default {
         check: ''
       },
       tableData: [],
-      choice:{
-        today:'',
-        day:'',
-        month:'',
-        year:''
-      }
-
+      choice: {
+        today: '',
+        time: ''
+      },
     };
   },
   mounted() {
@@ -72,6 +71,9 @@ export default {
     this.getLineSon()
   },
   methods: {
+    handleChange(value) {
+      console.log(value);
+    },
     check() {
 
 // axios.post(
