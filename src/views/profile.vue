@@ -41,9 +41,10 @@ export default {
  
   data() {
     return {
+
         formInline: {
-          month: '5000',
-          year: '60000'
+          month: '',
+          year: ''
         }
       }
   },
@@ -52,13 +53,14 @@ export default {
     this.dl_year_limit()
   },
   methods: {
+
     dl_month_limit()
     {
       axios.post(
           "/leftmonthlimit", {}
       ).then(data => {
             console.log(data)
-            this.formInline.month = data.data
+            this.formInline.month = data.data.data
           }
       )
     },
@@ -68,7 +70,7 @@ export default {
           "/leftyearlimit", {}
       ).then(data => {
             console.log(data)
-            this.formInline.year = data.data
+            this.formInline.year = data.data.data
           }
       )
     },

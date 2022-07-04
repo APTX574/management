@@ -161,38 +161,6 @@ export default {
       }
       console.log(a)
 
-// axios.post(
-//       "/get"
-//       ,{
-//           "status": "confirmed"
-//         }
-//         // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-//       )
-//         .then(res=>{
-//             var a =JSON.parse(res.request.response)
-//             var tableData = a.data.contractList
-//             console.log(tableData)
-//             var len = tableData.length
-//             var checkname = this.filter.name
-//             var array = []
-//             for(var i =0;i<len;i++){
-//               tableData[i].seriousness = "低"
-//               tableData[i].beizhu = "无"
-//               tableData[i].firmpeople = 'lmr'
-//               if(tableData[i].userName ==checkname || checkname==''){
-//                 tableData[i].firmapplytime = "2022/06/29"        
-//                 tableData[i].firmchecktime = "2022/06/29"        
-
-//                 array.push(tableData[i])
-//               }
-//             }
-
-//             this.tableData = array
-//             console.log(this.tableData)
-//         })
-//         .catch(error=>{
-//           console.log(error)
-//         })
     },
     getnow(input) {
 

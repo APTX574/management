@@ -71,12 +71,15 @@ export default {
   name: "setting",
   components: {},
   data() {
+
     return {
+      monthlimit:"",
+      yearlimit:"",
       formInline: {
         month_money: '',
         year_money: '',
-        month: '5000',
-        year: '60000'
+        month: '',
+        year: ''
       },
       userkeysetting:{
         user:'wqs',
@@ -133,34 +136,34 @@ export default {
     dl_month_limit()
     {
       axios.post(
-          "/setmonthlimit", {}
+          "/monthlimit", {}
       ).then(data => {
             console.log(data)
-            this.formInline.month = data.data
+            this.formInline.month = data.data.data
           }
       )
     },
     dl_year_limit()
     {
       axios.post(
-          "/setyearlimit", {}
+          "/yearlimit", {}
       ).then(data => {
             console.log(data)
-            this.formInline.year = data.data
+            this.formInline.year = data.data.data
           }
       )
     },
     onSubmit0(input0,input1) {
-      if(!input0)
+      if(input0)
       {
         axios.post("/setmonthlimit", {
-          monthlimit: this.month_money,
+          monthlimit: this.formInline.month_money,
         })
       }
-      if(!input1)
+      if(input1)
       {
         axios.post("/setyearlimit", {
-          yearlimit: this.year_money,
+          yearlimit: this.formInline.year_money,
         })
       }
       this.$notify({
@@ -169,7 +172,7 @@ export default {
       });
     },
     exp() {
-      window.open("http://47.96.72.124:8080/download")
+      window.open("http://localhost:8080/download")
     }
   },
 };
