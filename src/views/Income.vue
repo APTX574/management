@@ -224,12 +224,16 @@ export default {
     find(input){
       let output = this.tableData.filter(item => {
         if(!item.beizhu){
+          if(!input){
+            return 1
+          }
           return false
         }
         let b=item.beizhu.includes(input)
         return b
       })
       this.tableData=output
+      this.searchVisible=false
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
