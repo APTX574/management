@@ -139,6 +139,15 @@
             <el-form-item label="详细备注">
               <el-input v-model="addout.beizhu"></el-input>
             </el-form-item>
+
+            <div class="block">
+              <span class="demonstration">支出类型</span>
+              <el-cascader
+                  v-model="addout.type"
+                  :options="addout.options"
+                  @change="handleChange"></el-cascader>
+            </div>
+
             <el-form-item>
               <el-button type="primary" @click="submitForm">提交</el-button>
             </el-form-item>
@@ -157,7 +166,155 @@ export default {
   data() {
     return {
       addout: {
-        type: "",
+        type: [],
+        options: [{
+          value: '餐饮',
+          label: '餐饮',
+          children: [{
+            value: '个人就餐',
+            label: '个人就餐'
+          },{
+            value: '外卖',
+            label: '外卖'
+          },{
+            value: '零食',
+            label: '零食'
+          },{
+            value: '饮料',
+            label: '饮料'
+          },{
+            value: '请客',
+            label: '请客'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        },{
+          value: '购物',
+          label: '购物',
+          children: [{
+            value: '服饰装扮',
+            label: '服饰装扮'
+          },{
+            value: '日用百货',
+            label: '日用百货'
+          },{
+            value: '家居用品',
+            label: '家居用品'
+          },{
+            value: '数码电器',
+            label: '数码电器'
+          },{
+            value: '母婴用品',
+            label: '母婴用品'
+          },{
+            value: '宠物用品',
+            label: '宠物用品'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        },{
+          value: '生活',
+          label: '生活',
+          children: [{
+            value: '运动健身',
+            label: '运动健身'
+          },{
+            value: '美容美发',
+            label: '美容美发'
+          },{
+            value: '住房物业',
+            label: '住房物业'
+          },{
+            value: '汽车保养',
+            label: '汽车保养'
+          },{
+            value: '酒店旅游',
+            label: '酒店旅游'
+          },{
+            value: '书籍教育',
+            label: '书籍教育'
+          },{
+            value: '音乐影视',
+            label: '音乐影视'
+          },{
+            value: '医疗健康',
+            label: '医疗健康'
+          },{
+            value: '文与休闲',
+            label: '文与休闲'
+          },{
+            value: '充值消费',
+            label: '充值消费'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        },{
+          value: '出行',
+          label: '出行',
+          children: [{
+            value: '公共交通',
+            label: '公共交通'
+          },{
+            value: '汽车加油',
+            label: '汽车加油'
+          },{
+            value: '机票',
+            label: '机票'
+          },{
+            value: '船票',
+            label: '船票'
+          },{
+            value: '景区门票',
+            label: '景区门票'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        },{
+          value: '大件消费',
+          label: '大件消费',
+          children: [{
+            value: '购房',
+            label: '购房'
+          },{
+            value: '购车',
+            label: '购车'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        },{
+          value: '其他',
+          label: '其他',
+          children: [{
+            value: '转账',
+            label: '转账'
+          },{
+            value: '红包',
+            label: '红包'
+          },{
+            value: '公益',
+            label: '公益'
+          },{
+            value: '保险',
+            label: '保险'
+          },{
+            value: '信用借还',
+            label: '信用借还'
+          },{
+            value: '理财',
+            label: '理财'
+          },{
+            value: '银行存储',
+            label: '银行存储'
+          },{
+            value: '其他',
+            label: '其他'
+          }]
+        }],
         subtype: "",
         numbers: "",
         time: "",
@@ -168,6 +325,9 @@ export default {
     }
   },
   methods: {
+    handleChange(value) {
+      console.log(value);
+    },
     submitForm() {
       axios.post(
           "/insert/outcome", {
