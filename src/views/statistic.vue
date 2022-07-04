@@ -4,22 +4,14 @@
       <div slot="header" class="clearfix">
         <span>in_out_type_cof</span>
       </div>
-      <div class="block">
-        <span class="demonstration">choose_day_to_cof</span>
-        <el-date-picker
-            v-model="choice.today"
-            type="date"
-            placeholder="选择日期">
-        </el-date-picker>
-      </div>
-      <div style="margin: 15px 0;"></div>
       <div>
-        <el-radio-group v-model="choice.type">
-          <el-radio-button label="日"></el-radio-button>
+        <el-radio-group v-model="choice.type"
+                        @change="getnow(choice.type)">
+          <el-radio-button label="日" ></el-radio-button>
           <el-radio-button label="月"></el-radio-button>
           <el-radio-button label="年"></el-radio-button>
         </el-radio-group>
-        <div style="margin: 15px 0;"></div>
+<!--        <div style="margin: 15px 0;"></div>
         <el-switch
             style="display: block"
             v-model="choice.is_out0"
@@ -27,7 +19,7 @@
             inactive-color="#ff4949"
             active-text="支出"
             inactive-text="收入">
-        </el-switch>
+        </el-switch>-->
       </div>
       <div style="height: 500px;width: 800px" ref="myChart"></div>
 
@@ -160,6 +152,14 @@ export default {
       console.log(value);
     },
     check() {
+      let a={
+        start:this.choice.time[0],
+        end:this.choice.time[1],
+        is_out:this.choice.is_out1,   //1->支出
+        out_dtl:this.choice.out_dtl,  //1->输出sort
+        checkList:this.choice.checkList
+      }
+      console.log(a)
 
 // axios.post(
 //       "/get"
@@ -194,7 +194,170 @@ export default {
 //           console.log(error)
 //         })
     },
+    getnow(input)
+    {
 
+      if(input=='日')
+      {
+        console.log(0)
+        this.GetPie(0)
+      }
+      else if(input=='月')
+      {
+        console.log(1)
+        this.GetPie(1)
+      }
+      else
+      {
+        console.log(2)
+        this.GetPie(2)
+      }
+    },
+/*    if(input==0)
+{
+  "/get/nowdaysum", {}
+}
+else if(input==1)
+{
+  "/get/nowmonthsum", {}
+}
+else
+{
+  "/get/nowyearsum", {}
+}*/
+    GetPie(input) {
+      if(input==0) {
+        console.log(0)
+        console.log(0)
+        console.log(0)
+        axios.post(
+            "/get/nowdaysum", {}
+        ).then(data => {
+          data = data.data.data
+          let option = {
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data: data,
+                itemStyle: {
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  normal: {
+                    label: {
+                      show: true,
+                      //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                      formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+                    },
+                    labelLine: {show: true}
+                  }
+                }
+              }
+            ]
+          }
+          // 2.创建图表
+          let chart = this.$echarts.init(this.$refs.myChart)
+          // 3，导入图表的配置
+          chart.setOption(option)
+          // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+          window.addEventListener('resize', function () {
+            chart.resize()
+          })
+        })
+      }
+      else if(input==1)
+      {
+        console.log(1)
+        console.log(1)
+        console.log(1)
+        axios.post(
+            "/get/nowmonthsum", {}
+        ).then(data => {
+          data = data.data.data
+          let option = {
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data: data,
+                itemStyle: {
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  normal: {
+                    label: {
+                      show: true,
+                      //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                      formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+                    },
+                    labelLine: {show: true}
+                  }
+                }
+              }
+            ]
+          }
+          // 2.创建图表
+          let chart = this.$echarts.init(this.$refs.myChart)
+          // 3，导入图表的配置
+          chart.setOption(option)
+          // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+          window.addEventListener('resize', function () {
+            chart.resize()
+          })
+        })
+      }
+      else
+      {
+        console.log(2)
+        console.log(2)
+        console.log(2)
+        axios.post(
+            "/get/nowyearsum", {}
+        ).then(data => {
+          data = data.data.data
+          let option = {
+            series: [
+              {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data: data,
+                itemStyle: {
+                  emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  normal: {
+                    label: {
+                      show: true,
+                      //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                      formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+                    },
+                    labelLine: {show: true}
+                  }
+                }
+              }
+            ]
+          }
+          // 2.创建图表
+          let chart = this.$echarts.init(this.$refs.myChart)
+          // 3，导入图表的配置
+          chart.setOption(option)
+          // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+          window.addEventListener('resize', function () {
+            chart.resize()
+          })
+        })
+      }
+    },
     getPie() {
       axios.post(
           "/get/sum", {}
@@ -255,7 +418,7 @@ export default {
       ).then(data1 => {
         axios.post("/get/day/sum", {
               year: 2022,
-              month: 7,
+              month: date,
               userId: 0
             }
         ).then(data => {

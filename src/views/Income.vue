@@ -80,15 +80,15 @@
     </el-table>
 
     <el-dialog title="查询"  :visible = "searchVisible" width="40%" :append-to-body="true" :show-close= false>
-      <el-form :model="form" label-width="120px">
+      <el-form :model="inputbeizhu" label-width="120px">
         <el-form-item label="详细备注">
-          <el-input v-model="form.beizhu" style="width: 80%"></el-input>
+          <el-input v-model="inputbeizhu" style="width: 80%"></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
                 <span class="dialog-footer">
                   <el-button @click="searchVisible = false">取 消</el-button>
-                  <el-button type="primary" @click="save" searchVisible=false>确 定</el-button>
+                  <el-button type="primary" @click="find(inputbeizhu)" searchVisible=false>确 定</el-button>
                 </span>
       </template>
     </el-dialog>
@@ -198,7 +198,7 @@ export default {
     return {
       tableData: [{createTime: "", type: "", way: "", account: "", beizhu: ""}],
       id:"",
-      form:{createTime: "", type: "", way: "", account: "", beizhu: ""},
+      form:{createTime: "", type: "", way: "", account: "", beizhu: "",inputbeizhu:""},
       dialogVisible: false,
       searchVisible: false,
       inputbeizhu:""
@@ -221,8 +221,15 @@ export default {
 
 
   methods: {
-    find(){
-
+    find(input){
+      let output = this.tableData.filter(item => {
+        if(!item.beizhu){
+          return false
+        }
+        let b=item.beizhu.includes(input)
+        return b
+      })
+      this.tableData=output
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);

@@ -23,10 +23,8 @@
         </el-form-item>
       </el-form>
     </el-card>
-    <el-card>
-      <el-button type="primary" @click="exp">导出</el-button>
-    </el-card>
 
+    <div style="margin: 15px 0;"></div>
 
     <el-card class="box-card" style="width: 750px" shadow="hover">
       <div slot="header" class="clearfix" >
@@ -56,6 +54,11 @@
           <el-input v-model="usersetting.beizhu" placeholder="请设置新备注"></el-input>
         </el-form-item>
       </el-form>
+    </el-card>
+
+    <div style="margin: 15px 0;"></div>
+    <el-card class="box-card" style="width: 750px" shadow="hover">
+        <el-button type="primary" @click="exp">导出</el-button>
     </el-card>
   </div>
 </template>
@@ -224,42 +227,8 @@ export default {
 
     },
     exp() {
-      window.open("http://localhost:8080/download")
+      window.open("http://47.96.72.124:8080/download")
     }
-    // acceptrebirth(id) {
-    //   axios.post(
-    //       "/change"
-    //       , {
-    //         "opt": "remake",
-    //         "id": id
-    //       }
-    //       // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-    //   )
-    //       .then(res => {
-    //         console.log(JSON.parse(res.request.response))
-    //         alert("审核接受")
-    //       })
-    //       .catch(error => {
-    //         console.log(error)
-    //       })
-    // },
-    // refuserebirth(id) {
-    //   axios.post(
-    //       "/change"
-    //       , {
-    //         "opt": "refuse",
-    //         "id": id
-    //       }
-    //       // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-    //   )
-    //       .then(res => {
-    //         console.log(JSON.parse(res.request.response))
-    //         alert("审核接受")
-    //       })
-    //       .catch(error => {
-    //         console.log(error)
-    //       })
-    // },
   },
 };
 </script>

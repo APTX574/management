@@ -2,6 +2,7 @@
   <div>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
     <el-button @click="getoutput">刷新</el-button>
+    <el-button type="primary" @click="getsearch">查询</el-button>
     <el-button type="primary" @click="exp">导出</el-button>
     <el-table
         :data="tableData"
@@ -86,7 +87,24 @@
       </el-table-column>
 
     </el-table>
-
+    <el-dialog title="查询"  :visible = "searchVisible" width="40%" :append-to-body="true" :show-close= false>
+      <el-form :model="inputlocation" label-width="120px">
+        <el-form-item label="地点">
+          <el-input v-model="inputlocation" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-form :model="inputbeizhu" label-width="120px">
+        <el-form-item label="详细备注">
+          <el-input v-model="inputbeizhu" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+                <span class="dialog-footer">
+                  <el-button @click="searchVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="find(inputbeizhu,inputlocation)" searchVisible=false>确 定</el-button>
+                </span>
+      </template>
+    </el-dialog>
     <!-- 弹窗 -->
     <el-dialog title="提示"  :visible = "dialogVisible" width="40%" :append-to-body="true" :show-close= false>
       <el-form :model="form" label-width="120px">
@@ -223,6 +241,9 @@
                 </span>
       </template>
 
+
+
+
     </el-dialog>
     <div class="block">
       <span class="demonstration"></span>
@@ -249,11 +270,13 @@ export default {
   components: {},
   data() {
     return {
+      searchVisible: false,
       tableData: [{createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""}],
       id:"",
       form: {createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""},
       dialogVisible: false,
-      input_beizhu:'',
+      inputbeizhu:'',
+      inputlocation:''
     };
   },
 
@@ -262,13 +285,23 @@ export default {
   // },
 
   methods: {
-    find()
-    {
-      let bz=this.input_beizhu;
-      this.tableData=this.tableData.filter(function(item){
-          let includes = item.includes(bz);
-          return includes
+    find(input1,input2){
+      let output = this.tableData.filter(item => {
+        if(!item.beizhu){
+          return false
+        }
+        let b=item.beizhu.includes(input1)
+        return b
       })
+      this.tableData=output
+      output = this.tableData.filter(item => {
+        if(!item.location){
+          return false
+        }
+        let b=item.location.includes(input2)
+        return b
+      })
+      this.tableData=output
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -363,6 +396,10 @@ export default {
     },
     exp() {
       window.open("http://47.96.72.124:8080/download")
+    },
+    getsearch(){
+      this.searchVisible = true
+      console.log(111)
     }
   },
   mounted() {
