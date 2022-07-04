@@ -32,6 +32,8 @@
 
 <script>
  
+import axios from "axios";
+
 export default {
   name: "profile",
 
@@ -44,7 +46,31 @@ export default {
         }
       }
   },
+  mounted(){
+    this.dl_month_limit()
+    this.dl_year_limit()
+  },
   methods: {
+    dl_month_limit()
+    {
+      axios.post(
+          "/leftmonthlimit", {}
+      ).then(data => {
+            console.log(data)
+            this.formInline.month = data.data
+          }
+      )
+    },
+    dl_year_limit()
+    {
+      axios.post(
+          "/leftyearlimit", {}
+      ).then(data => {
+            console.log(data)
+            this.formInline.year = data.data
+          }
+      )
+    },
     errorHandler() {
       return true
     },
