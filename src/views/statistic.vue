@@ -1,6 +1,34 @@
 <template>
   <div>
-    <div style="height: 500px;width: 800px" ref="myChart"></div>
+    <el-card shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>in_out_type_cof</span>
+      </div>
+      <div class="block">
+        <span class="demonstration">choose_day_to_cof</span>
+        <el-date-picker
+            v-model="choice.today"
+            type="date"
+            placeholder="选择日期">
+        </el-date-picker>
+      </div>
+      <div style="height: 500px;width: 800px" ref="myChart"></div>
+    </el-card>
+    <el-card shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>in_out_type_cof</span>
+      </div>
+      <div class="block">
+        <span class="demonstration">choose_month_to_cof</span>
+        <el-date-picker
+            v-model="choice.month"
+            type="month"
+            placeholder="选择月">
+        </el-date-picker>
+      </div>
+    </el-card>
+
+
 
   </div>
 
@@ -24,7 +52,12 @@ export default {
         check: ''
       },
       tableData: [],
-
+      choice:{
+        today:'',
+        day:'',
+        month:'',
+        year:''
+      }
 
     };
   },
