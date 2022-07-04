@@ -1,24 +1,30 @@
 <template>
   <div>
-    <el-descriptions  direction="vertical" :column="4" border>
-  <el-descriptions-item label="用户名">wqs</el-descriptions-item>
-  <el-descriptions-item label="手机号">123456789</el-descriptions-item>
-  <el-descriptions-item label="居住地" :span="2">杭州市</el-descriptions-item>
-  <el-descriptions-item label="备注">
-    <el-tag size="small">学校</el-tag>
-  </el-descriptions-item>
-  <el-descriptions-item label="联系地址">浙江省杭州市钱塘区杭州电子科技大学</el-descriptions-item>
-</el-descriptions>
+    <el-card class="box-card" shadow="hover">
+    <div>
+      <el-avatar icon="el-icon-user-solid" :size="120"></el-avatar>
+    </div>
+      <h2>{{"wqs"}}</h2>
 
-<el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-  <el-form-item label="本月剩余额度">
-    <el-input v-model="formInline.month" readonly="true"></el-input>
-  </el-form-item>
-  <el-form-item label="今年剩余额度">
-    <el-input v-model="formInline.year" readonly="true"></el-input>
-  </el-form-item>
-</el-form>
+      <el-descriptions  direction="vertical" :column="4" border>
 
+        <el-descriptions-item label="手机号">123456789</el-descriptions-item>
+        <el-descriptions-item label="居住地" :span="2">杭州市</el-descriptions-item>
+        <el-descriptions-item label="备注">
+          <el-tag size="small">学校</el-tag>
+        </el-descriptions-item>
+        <el-descriptions-item label="联系地址">浙江省杭州市钱塘区杭州电子科技大学</el-descriptions-item>
+      </el-descriptions>
+
+      <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
+        <el-form-item label="本月剩余额度">
+          <el-input v-model="formInline.month" readonly="true"></el-input>
+        </el-form-item>
+        <el-form-item label="今年剩余额度">
+          <el-input v-model="formInline.year" readonly="true"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 

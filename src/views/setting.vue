@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card" style="width: 750px">
+    <el-card class="box-card" style="width: 750px" shadow="hover">
     <div slot="header" class="clearfix" >
       <span>额度设置</span>
       <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
@@ -25,7 +25,7 @@
     </el-card>
 
 
-    <el-card class="box-card" style="width: 750px">
+    <el-card class="box-card" style="width: 750px" shadow="hover">
       <div slot="header" class="clearfix" >
         <span>个人信息设置</span>
         <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>

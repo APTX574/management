@@ -52,7 +52,106 @@
       >
       </el-table-column>
 
+      <el-table-column
+          fixed="right"
+          label="操作"
+          width="160">
+        <template #default="scope">
+          <el-button
+              @click="handleEdit(scope.row,scope.row.courseID)"
+              type="text"
+              size="small">
+            编辑
+          </el-button>
+          <el-button
+              @click.native.prevent="deleteRow(scope.row.id)"
+              type="danger"
+              size="small">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
+
     </el-table>
+
+    <!-- 弹窗 -->
+    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true">
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="时间">
+          <div class="block">
+            <el-date-picker
+                style="width:80%"
+                v-model="form.createTime"
+                align="right"
+                type="datetime"
+                placeholder="选择日期"
+            >
+            </el-date-picker>
+          </div>
+        </el-form-item>
+      </el-form>
+
+      <!--      <el-form :model="form" label-width="120px">-->
+      <!--        <el-form-item label="时间">-->
+      <!--          <el-input v-model="form.createTime" v-show="dialogVisible" style="width: 80%"></el-input>-->
+      <!--        </el-form-item>-->
+      <!--      </el-form>-->
+
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="收入类型">
+          <el-select
+              v-model="form.type"
+              placeholder="请选择收入类型"
+              style="width: 80%">
+            <el-option label="工资" value="工资"></el-option>
+            <el-option label="红包" value="红包"></el-option>
+            <el-option label="借贷" value="借贷"></el-option>
+            <el-option label="退款" value="退款"></el-option>
+            <el-option label="转账" value="转账"></el-option>
+            <el-option label="提现" value="提现"></el-option>
+            <el-option label="理财" value="理财"></el-option>
+            <el-option label="其他" value="其他"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+
+
+
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="金额" >
+          <el-input placeholder="请输入消费额" v-model="form.account" class="input-with-select" style="width: 80%">
+            <el-select
+                v-model="form.way"
+                slot="prepend"
+                placeholder="消费方式"
+                style="width: 120px">
+              <el-option label="现金" value="现金"></el-option>
+              <el-option label="银行卡" value="银行卡"></el-option>
+              <el-option label="支付宝" value="支付宝"></el-option>
+              <el-option label="微信" value="微信"></el-option>
+              <el-option label="Paypal" value="Paypal"></el-option>
+              <el-option label="Visa" value="Visa"></el-option>
+              <el-option label="ApplePay" value="ApplePay"></el-option>
+              <el-option label="其他" value="其他"></el-option>
+            </el-select>
+          </el-input>
+        </el-form-item>
+      </el-form>
+
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="详细备注">
+          <el-input v-model="form.beizhu" style="width: 80%"></el-input>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+                <span class="dialog-footer">
+                  <el-button @click="dialogVisible = false">取 消</el-button>
+                  <el-button type="primary" @click="save" dialogVisible=false>确 定</el-button>
+                </span>
+      </template>
+
+    </el-dialog>
+
     <div class="block">
       <span class="demonstration"></span>
       <el-pagination
@@ -79,33 +178,67 @@ export default {
   data() {
     return {
       tableData: [{createTime: "", type: "", way: "", account: "", beizhu: ""}],
-      props: {
-        status: -1
-      }
+      id:"",
+      form:{createTime: "", type: "", way: "", account: "", beizhu: ""},
+      dialogVisible: false,
+      // props: {
+      //   status: -1
+      // }
     };
   },
-  watch: {
-    props: {
-      deep:true, //深度监听设置为 true
-      handler:function(){
-        console.log(this.props.status)
-        this.get()
-      }
+  // watch: {
+  //   props: {
+  //     deep:true, //深度监听设置为 true
+  //     handler:function(){
+  //       console.log(this.props.status)
+  //       this.getincome()
+  //     }
+  //
+  //
+  //   }
+  // },
 
 
-    }
-  },
-
-  mounted() {
-    console.log(this.props.status)
-    this.get()
-  },
   methods: {
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
+    },
+    deleteRow(id) {
+      axios.post("/delete", {
+        "id": id
+      }).then(() => {
+        this.$message({
+          type: "success",
+          message: "删除成功"
+        })
+        this.getincome()
+      })
+    },
+    save() {
+      console.log(this.form)
+      if (this.id !== 0) {
+        axios.post("/update", this.form).then(res => {
+          console.log(res)
+          this.getincome()                   //更新数据
+          this.dialogVisible = false   //关闭弹窗
+        })
+      } else {
+        axios.post("/insert/income", this.form).then(res => {
+          console.log(res)
+          this.getincome()                   //更新数据
+          this.dialogVisible = false   //关闭弹窗
+        })
+      }
+    },
+    handleEdit(row, id) {
+      console.log(1)
+      this.form = JSON.parse(JSON.stringify(row))
+      this.dialogVisible = true
+      this.id = id
+
     },
     formatTime(row, column) {
 
@@ -150,25 +283,8 @@ export default {
       return row[property] === value;
     },
 
-    onSubmit() {
-      // const { data: res } = await this.$http.post(process.env.API_ROOT + "/", {
 
-      console.log(this.tableData)
-      // if (res.errorCode === 0) {
-      //   this.$message.success("发布成功");
-      // } else {
-      //   return this.$message.error("发布失败 标题、通知班级、内容不能为空");
-      // }
-    },
-    get(){
-      axios.post(
-          "/get/income", {}
-      ).then(data => {
-            console.log(data)
-            this.tableData = data.data
-          }
-      )
-    }
+
 
     //获取基本信息
     // async getBasicInfo() {
@@ -192,7 +308,20 @@ export default {
     //     (this.qqnumber = res.qqnumber),
     //     (this.email = res.email);
     // },
-  }
+    getincome(){
+      axios.post(
+          "/get/income", {}
+      ).then(data => {
+            console.log(data)
+            this.tableData = data.data
+          }
+      )
+    },
+  },
+
+  mounted() {
+    this.getincome()
+  },
 }
 </script>
 <style scoped>

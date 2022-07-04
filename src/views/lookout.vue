@@ -3,6 +3,7 @@
     <el-button @click="clearFilter">清除所有过滤器</el-button>
     <el-table
         :data="tableData"
+        stripe
         ref="multipleTable"
         border
         style="width: 100%">
@@ -65,7 +66,12 @@
           label="操作"
           width="160">
         <template #default="scope">
-          <el-button @click="handleEdit(scope.row,scope.row.courseID)" type="text" size="small">编辑</el-button>
+          <el-button
+              @click="handleEdit(scope.row,scope.row.courseID)"
+              type="text"
+              size="small">
+            编辑
+          </el-button>
           <el-button
               @click.native.prevent="deleteRow(scope.row.id)"
               type="danger"
@@ -78,7 +84,7 @@
     </el-table>
 
     <!-- 弹窗 -->
-    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true">
+    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true" show-close="false">
       <el-form :model="form" label-width="120px">
         <el-form-item label="时间">
           <div class="block">
@@ -267,7 +273,7 @@ export default {
           type: "success",
           message: "删除成功"
         })
-        this.getincome()
+        this.getoutput()
       })
     },
     save() {
@@ -275,13 +281,13 @@ export default {
       if (this.id !== 0) {
         axios.post("/update", this.form).then(res => {
           console.log(res)
-          this.getincome()                   //更新数据
+          this.getoutput()                   //更新数据
           this.dialogVisible = false   //关闭弹窗
         })
       } else {
         axios.post("/insert/output", this.form).then(res => {
           console.log(res)
-          this.getincome()                   //更新数据
+          this.getoutput()                   //更新数据
           this.dialogVisible = false   //关闭弹窗
         })
       }
@@ -340,7 +346,7 @@ export default {
     //     return props.Status;
     //   }
     // },
-    // getincome() {
+    // getoutput() {
     //   watch:{
     //     props:{ //监听的对象
     //       axios.post(
@@ -353,7 +359,7 @@ export default {
     //     }
     //   }
     // }
-    getincome() {
+    getoutput() {
       axios.post(
           "/get/output", {}
       ).then(data => {
@@ -364,7 +370,7 @@ export default {
     }
   },
   mounted() {
-    this.getincome()
+    this.getoutput()
   },
 }
 </script>
