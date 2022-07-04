@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
+    <el-button @click="getoutput">刷新</el-button>
     <el-button type="primary" @click="exp">导出</el-button>
     <el-table
         :data="tableData"
