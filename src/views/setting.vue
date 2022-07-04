@@ -163,6 +163,10 @@ export default {
           yearlimit: this.year_money,
         })
       }
+      this.$notify({
+        title: '提交成功',
+        type: 'success'
+      });
     },
     exp() {
       window.open("http://47.96.72.124:8080/download")

@@ -353,7 +353,11 @@ export default {
       ).then(data => {
         console.log(data)
       })
-      alert("提交成功")
+      // alert("提交成功")
+      this.$notify({
+        title: '提交成功',
+        type: 'success'
+      });
     },
 
 
