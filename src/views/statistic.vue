@@ -2,7 +2,7 @@
   <div>
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
-        <span>in_out_type_cof</span>
+        <h3>整体收支一览</h3>
       </div>
       <div>
         <el-radio-group v-model="choice.type"
@@ -25,10 +25,10 @@
 
 
     </el-card>
-
+    <div style="margin: 15px 0;"></div>
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
-        <span>in_out_type_cof</span>
+        <span><h3>月份收支趋势</h3></span>
       </div>
       <div class="block">
         <span class="demonstration"></span>
@@ -41,10 +41,10 @@
       </div>
       <div style="height: 500px;width: 800px" ref="myChart2"></div>
     </el-card>
-
+    <div style="margin: 15px 0;"></div>
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
-        <span>check_type_cof</span>
+        <span><h3>明细类目筛选</h3></span>
       </div>
       <div class="block">
         <span class="demonstration">时间段</span>
@@ -119,10 +119,9 @@ export default {
         type: '',
         today: '',
         month: '',
-        time: '',
-        is_out0: '',
-        is_out1: '',
-        out_dtl: '',
+        time: 0,
+        is_out1: false,
+        out_dtl: false,
         checkAll: '',
         checkList: []
       },
@@ -392,13 +391,12 @@ export default {
       })
     },
     getDay(date) {
-      if (!date) {
+      if (date==0) {
         date = 7
+      } else {
+        let date1 = new Date(date);
+        date = date1.getMonth() + 1;
       }
-
-      let date1 = new Date(date);
-      date = date1.getMonth() + 1;
-
       axios.post("/get/day/sum", {
             year: 2022,
             month: date,
@@ -414,6 +412,7 @@ export default {
           console.log(data.data.data.day)
           console.log("new")
           console.log(data.data.data.sum)
+
           let option = {
             title: {
               text: '当月收支'
