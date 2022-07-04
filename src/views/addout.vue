@@ -355,28 +355,8 @@ export default {
       })
       alert("提交成功")
     },
-    submitFom() {
 
-      //   axios.post(
-      // "/insert"
-      // ,{
-      //     userName:firmapply.name,
-      //     reason:firmapply.reason,
-      //     seriousness:firmapply.seriousness,
-      //     outLevel:firmapply.outlevel,
-      //     beizhu:firmapply.beizhu
-      //   }
-      //   // headers:{'Content-Type': 'application/json', 'Accept': 'application/json'}
-      // )
-      //   .then(res=>{
-      //       this.datas = JSON.parse(res.request.response)
 
-      //   })
-      //   .catch(error=>{
-      //     console.log(error)
-      //   })
-
-    }
   }
 }
 

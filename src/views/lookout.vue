@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
+    <el-button type="primary" @click="exp">导出</el-button>
     <el-table
         :data="tableData"
         stripe
@@ -340,24 +341,6 @@ export default {
       return row[property] === value;
     },
 
-    // computed: {
-    //   name() {
-    //     return props.Status;
-    //   }
-    // },
-    // getoutput() {
-    //   watch:{
-    //     props:{ //监听的对象
-    //       axios.post(
-    //           "/get/output", {}
-    //       ).then(data => {
-    //             console.log(data)
-    //             this.tableData = data.data
-    //           }
-    //       )
-    //     }
-    //   }
-    // }
     getoutput() {
       axios.post(
           "/get/output", {}
@@ -366,6 +349,9 @@ export default {
             this.tableData = data.data
           }
       )
+    },
+    exp() {
+      window.open("http://localhost:8080/download")
     }
   },
   mounted() {
