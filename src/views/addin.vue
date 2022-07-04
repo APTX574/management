@@ -73,7 +73,7 @@
               <el-input v-model="addin.createTime"></el-input>
             </el-form-item>-->
 
-            <el-form-item label="消费时间">
+            <el-form-item label="时间">
               <div class="block">
 
                 <el-date-picker

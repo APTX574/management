@@ -52,6 +52,7 @@
       <el-table-column
           prop="account"
           label="金额（元）"
+          sortable
           width="200"
       >
       </el-table-column>
