@@ -12,6 +12,21 @@
             placeholder="选择日期">
         </el-date-picker>
       </div>
+      <div>
+        <el-radio-group v-model="choice.type">
+          <el-radio-button label="日"></el-radio-button>
+          <el-radio-button label="月"></el-radio-button>
+          <el-radio-button label="年"></el-radio-button>
+        </el-radio-group>
+        <el-switch
+            style="display: block"
+            v-model="choice.is_out"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="支出"
+            inactive-text="收入">
+        </el-switch>
+      </div>
       <div style="height: 500px;width: 800px" ref="myChart"></div>
       <div style="height: 500px;width: 800px" ref="myChart2"></div>
       <div style="height: 500px;width: 800px" ref="myChart3"></div>
@@ -22,15 +37,22 @@
         <span>in_out_type_cof</span>
       </div>
       <div class="block">
-        <span class="demonstration">choose_time_range_to_cof</span>
-        <el-date-picker
-            v-model="choice.time"
-            type="daterange"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期">
-        </el-date-picker>
+        <div class="block">
+          <span class="demonstration"></span>
+          <el-date-picker
+              v-model="choice.month"
+              type="month"
+              placeholder="选择月">
+          </el-date-picker>
+        </div>
 
       </div>
+    </el-card>
+    <el-card shadow="hover">
+      <div slot="header" class="clearfix">
+        <span>check_type_cof</span>
+      </div>
+
     </el-card>
 
 
@@ -58,8 +80,11 @@ export default {
       },
       tableData: [],
       choice: {
+        type:'',
         today: '',
-        time: ''
+        month:'',
+        time: '',
+        is_out:''
       },
     };
   },
