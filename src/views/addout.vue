@@ -319,6 +319,7 @@ export default {
             label: '其他'
           }]
         }],
+        type:"",
         subtype: "",
         numbers: "",
         time: "",
@@ -332,11 +333,17 @@ export default {
     handleChange(value) {
       console.log(value);
     },
+    get_type(){
+      return this.addout.value[0];
+    },
+    get_subtype(){
+      return this.addout.value[1];
+    },
     submitForm() {
       axios.post(
           "/insert/outcome", {
-            type: this.addout.value[0],
-            subtype: this.addout.value[1],
+            type: this.get_type(),
+            subtype: this.get_subtype(),
             time: this.addout.time,
             location: this.addout.location,
             way:this.addout.way,

@@ -84,7 +84,7 @@
     </el-table>
 
     <!-- 弹窗 -->
-    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true" show-close="false">
+    <el-dialog title="提示"  :visible = "dialogVisible" width="40%" :append-to-body="true" :show-close= false>
       <el-form :model="form" label-width="120px">
         <el-form-item label="时间">
           <div class="block">
@@ -93,8 +93,7 @@
                 v-model="form.createTime"
                 align="right"
                 type="datetime"
-                placeholder="选择日期"
-            >
+                placeholder="选择日期">
             </el-date-picker>
           </div>
         </el-form-item>
@@ -105,6 +104,7 @@
 <!--          <el-input v-model="form.createTime" v-show="dialogVisible" style="width: 80%"></el-input>-->
 <!--        </el-form-item>-->
 <!--      </el-form>-->
+
       <el-form :model="form" label-width="120px">
         <el-form-item label="支出类型">
           <el-select
@@ -247,7 +247,7 @@ export default {
     return {
       tableData: [{createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""}],
       id:"",
-      form:{createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""},
+      form: {createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""},
       dialogVisible: false,
     };
   },

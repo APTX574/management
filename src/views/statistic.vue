@@ -12,15 +12,17 @@
             placeholder="选择日期">
         </el-date-picker>
       </div>
+      <div style="margin: 15px 0;"></div>
       <div>
         <el-radio-group v-model="choice.type">
           <el-radio-button label="日"></el-radio-button>
           <el-radio-button label="月"></el-radio-button>
           <el-radio-button label="年"></el-radio-button>
         </el-radio-group>
+        <div style="margin: 15px 0;"></div>
         <el-switch
             style="display: block"
-            v-model="choice.is_out"
+            v-model="choice.is_out0"
             active-color="#13ce66"
             inactive-color="#ff4949"
             active-text="支出"
@@ -32,27 +34,65 @@
       <div style="height: 500px;width: 800px" ref="myChart3"></div>
       <div style="height: 500px;width: 800px" ref="myChart4"></div>
     </el-card>
+
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
         <span>in_out_type_cof</span>
       </div>
       <div class="block">
-        <div class="block">
-          <span class="demonstration"></span>
-          <el-date-picker
-              v-model="choice.month"
-              type="month"
-              placeholder="选择月">
-          </el-date-picker>
-        </div>
-
+        <span class="demonstration"></span>
+        <el-date-picker
+            v-model="choice.month"
+            type="month"
+            placeholder="选择月">
+        </el-date-picker>
       </div>
     </el-card>
+
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
         <span>check_type_cof</span>
       </div>
-
+        <div class="block">
+          <span class="demonstration">时间段</span>
+          <el-date-picker
+              v-model="choice.time"
+              type="monthrange"
+              range-separator="至"
+              start-placeholder="开始月份"
+              end-placeholder="结束月份">
+          </el-date-picker>
+          <div style="margin: 15px 0;"></div>
+          <el-switch
+              style="display: block"
+              v-model="choice.is_out1"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="支出"
+              inactive-text="收入">
+          </el-switch>
+          <div style="margin: 15px 0;"></div>
+          <el-switch
+              style="display: block"
+              v-model="choice.out_dtl"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="详细分类"
+              inactive-text="所有分类"
+              v-show= "choice.is_out1 == true">
+          </el-switch>
+          <div style="margin: 15px 0;"></div>
+          <el-checkbox :indeterminate="isIndeterminate"
+                       v-model="choice.checkAll"
+                       @change="handleCheckAllChange"
+                       v-show= "choice.is_out1 == true && choice.out_dtl == true">全选</el-checkbox>
+          <div style="margin: 15px 0;"></div>
+          <el-checkbox-group v-model="choice.checkList"
+                             @change="handleCheckedTypeChange"
+                             v-show= "choice.is_out1 == true && choice.out_dtl == true">
+            <el-checkbox v-for="type in all_type" :label="type" :key="type">{{type}}</el-checkbox>
+          </el-checkbox-group>
+        </div>
     </el-card>
 
 
@@ -68,7 +108,7 @@
 
 import axios from "axios";
 
-
+const allType = ['餐饮','购物','生活','出行','大件消费','其他']
 export default {
   name: "birthapply",
   components: {},
@@ -84,8 +124,15 @@ export default {
         today: '',
         month:'',
         time: '',
-        is_out:''
+        is_out0:'',
+        is_out1:'',
+        out_dtl:'',
+        checkAll:'',
+        checkList:[]
       },
+      checkAll: false,
+      all_type: allType,
+      isIndeterminate: true
     };
   },
   mounted() {
@@ -96,6 +143,15 @@ export default {
     this.getLineSon()
   },
   methods: {
+    handleCheckAllChange(val) {
+      this.choice.checkList = val ? allType : [];
+      this.isIndeterminate = false;
+    },
+    handleCheckedTypeChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.all_type.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.all_type.length;
+    },
     handleChange(value) {
       console.log(value);
     },
