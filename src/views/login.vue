@@ -36,7 +36,7 @@
     </div>
     <div class="block">
       <span class="demonstration"><h2>网页介绍</h2></span>
-      <el-carousel height="600px" type="card" interval="100%">
+      <el-carousel height="600px" type="card" interval="3000">
         <el-carousel-item v-for="item in 4" :key="item">
           <h3 class="small">{{ item }}</h3>
         </el-carousel-item>

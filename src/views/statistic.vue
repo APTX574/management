@@ -64,12 +64,8 @@ export default {
   mounted() {
     this.getPie()
     // 1.配置图表的数据和参数
-    axios.post("/get/day/sum", {
-      year: 2022,
-      month: 7
-    }).then(data => {
-      console.log(data)
-    })
+    this.getDay()
+    this.getLine()
 
   },
   methods: {
@@ -154,32 +150,94 @@ export default {
       })
     },
     getDay() {
-      axios.post(
-          "/get/sum", {}
+      axios.post("/get/day/sum", {
+            year: 2022,
+            month: 7,
+            userId: 1
+          }
+      ).then(data1 => {
+        axios.post("/get/day/sum", {
+              year: 2022,
+              month: 7,
+              userId: 0
+            }
+        ).then(data => {
+          console.log(data.data.data.day)
+          console.log("new")
+          let option = {
+            title: {
+              text: '当月收支'
+            },
+            tooltip: {},
+            legend: {
+              data: ['当月收支']
+            },
+            xAxis: {
+              data: data.data.data.day
+            },
+            yAxis: {},
+            series: [{
+              name: '支出',
+              type: 'line',
+              data: data.data.data.sum
+            }, {
+              name: '收入',
+              type: 'line',
+              data: data1.data.data.sum
+            }]
+          };
+
+          // 2.创建图表
+          let chart = this.$echarts.init(this.$refs.myChart2)
+
+          // 3，导入图表的配置
+          chart.setOption(option)
+
+          // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+          window.addEventListener('resize', function () {
+            chart.resize()
+          })
+        })
+      })
+    },
+    getLine() {
+      axios.post("/get/type/sum", {
+            year: 2022,
+            month: 7,
+            day: -1,
+            userId: 0
+          }
       ).then(data => {
         console.log(data)
-        data = data.data.data
         let option = {
-          title: {
-            text: '每日支出'
-          },
-          tooltip: {},
-          legend: {
-            data: ['支出']
-          },
-          xAxis: {
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-          },
-          yAxis: {},
-          series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-          }]
-        };
+          series: [
+            {
+              name: '访问来源',
+              type: 'pie',
+              radius: '55%',
+              data: data.data.data,
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                },
+                normal: {
+                  label: {
+                    show: true,
+                    //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                    formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+                  },
+                  labelLine: {show: true}
+                }
+              }
+            }
+          ]
+
+        }
 
         // 2.创建图表
-        let chart = this.$echarts.init(this.$refs.myChart)
+        let chart = this.$echarts.init(this.$refs.myChart3)
 
         // 3，导入图表的配置
         chart.setOption(option)

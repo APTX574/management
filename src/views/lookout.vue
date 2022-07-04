@@ -66,7 +66,12 @@
           label="操作"
           width="160">
         <template #default="scope">
-          <el-button @click="handleEdit(scope.row,scope.row.courseID)" type="text" size="small">编辑</el-button>
+          <el-button
+              @click="handleEdit(scope.row,scope.row.courseID)"
+              type="text"
+              size="small">
+            编辑
+          </el-button>
           <el-button
               @click.native.prevent="deleteRow(scope.row.id)"
               type="danger"
@@ -268,7 +273,7 @@ export default {
           type: "success",
           message: "删除成功"
         })
-        this.getincome()
+        this.getoutput()
       })
     },
     save() {
@@ -276,13 +281,13 @@ export default {
       if (this.id !== 0) {
         axios.post("/update", this.form).then(res => {
           console.log(res)
-          this.getincome()                   //更新数据
+          this.getoutput()                   //更新数据
           this.dialogVisible = false   //关闭弹窗
         })
       } else {
         axios.post("/insert/output", this.form).then(res => {
           console.log(res)
-          this.getincome()                   //更新数据
+          this.getoutput()                   //更新数据
           this.dialogVisible = false   //关闭弹窗
         })
       }
@@ -341,7 +346,7 @@ export default {
     //     return props.Status;
     //   }
     // },
-    // getincome() {
+    // getoutput() {
     //   watch:{
     //     props:{ //监听的对象
     //       axios.post(
@@ -354,7 +359,7 @@ export default {
     //     }
     //   }
     // }
-    getincome() {
+    getoutput() {
       axios.post(
           "/get/output", {}
       ).then(data => {
@@ -365,7 +370,7 @@ export default {
     }
   },
   mounted() {
-    this.getincome()
+    this.getoutput()
   },
 }
 </script>
