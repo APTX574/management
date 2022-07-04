@@ -143,6 +143,7 @@ export default {
     this.getLineSon()
   },
   methods: {
+
     handleCheckAllChange(val) {
       this.choice.checkList = val ? allType : [];
       this.isIndeterminate = false;

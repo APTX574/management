@@ -7,12 +7,14 @@
         ref="multipleTable"
         border
         style="width: 100%"
+        :default-sort = "{prop: 'createTime', order: 'descending'}"
     >
 
       <el-table-column
           fixed
           prop="createTime"
           label="时间"
+          sortable
           :formatter="formatTime"
           width="225px">
       </el-table-column>
@@ -75,7 +77,7 @@
     </el-table>
 
     <!-- 弹窗 -->
-    <el-dialog title="提示"  :visible = "dialogVisible" width="30%" :append-to-body="true">
+    <el-dialog title="提示"  :visible = "dialogVisible" width="40%" :append-to-body="true" :show-close= false>
       <el-form :model="form" label-width="120px">
         <el-form-item label="时间">
           <div class="block">
@@ -181,6 +183,7 @@ export default {
       id:"",
       form:{createTime: "", type: "", way: "", account: "", beizhu: ""},
       dialogVisible: false,
+      inputbeizhu:""
       // props: {
       //   status: -1
       // }
@@ -200,6 +203,9 @@ export default {
 
 
   methods: {
+    find(){
+
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },

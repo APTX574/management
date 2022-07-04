@@ -7,13 +7,15 @@
         stripe
         ref="multipleTable"
         border
-        style="width: 100%">
+        style="width: 100%"
+        :default-sort = "{prop: 'createTime', order: 'descending'}">
 
       <el-table-column
           fixed
           prop="createTime"
           label="时间"
           :formatter="formatTime"
+          sortable
           width="225px">
       </el-table-column>
       <el-table-column
