@@ -354,7 +354,7 @@ export default {
       )
     },
     exp() {
-      window.open("http://localhost:8080/download")
+      window.open("http://47.96.72.124:8080/download")
     }
   },
   mounted() {
