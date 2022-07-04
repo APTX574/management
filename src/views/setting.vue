@@ -6,7 +6,7 @@
       <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
     </div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-        <el-form-item label="本月剩余额度">
+        <el-form-item label="本月设置额度">
           <el-input v-model="formInline.month" readonly="true"></el-input>
         </el-form-item>
         <el-form-item label="更改本月额度">
@@ -14,7 +14,7 @@
         </el-form-item>
       </el-form>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
-        <el-form-item label="今年剩余额度">
+        <el-form-item label="今年设置额度">
           <el-input v-model="formInline.year" readonly="true"></el-input>
         </el-form-item>
 

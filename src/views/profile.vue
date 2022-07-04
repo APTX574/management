@@ -2,7 +2,9 @@
   <div>
     <el-card class="box-card" shadow="hover">
     <div>
-      <el-avatar icon="el-icon-user-solid" :size="120"></el-avatar>
+      <el-avatar src="https://empty" @error="errorHandler" :size="120">
+        <img src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"/>
+      </el-avatar>
     </div>
       <h2>{{"wqs"}}</h2>
 
@@ -43,6 +45,9 @@ export default {
       }
   },
   methods: {
+    errorHandler() {
+      return true
+    },
    onSubmit() {
         console.log('submit!');
       }
