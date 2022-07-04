@@ -30,9 +30,8 @@
         </el-switch>
       </div>
       <div style="height: 500px;width: 800px" ref="myChart"></div>
-      <div style="height: 500px;width: 800px" ref="myChart2"></div>
-      <div style="height: 500px;width: 800px" ref="myChart3"></div>
-      <div style="height: 500px;width: 800px" ref="myChart4"></div>
+
+
     </el-card>
 
     <el-card shadow="hover">
@@ -44,9 +43,11 @@
         <el-date-picker
             v-model="choice.month"
             type="month"
-            placeholder="选择月">
+            placeholder="选择月"
+            :change="getDay(choice.month)">
         </el-date-picker>
       </div>
+      <div style="height: 500px;width: 800px" ref="myChart2"></div>
     </el-card>
 
     <el-card shadow="hover">
@@ -92,6 +93,8 @@
                              v-show= "choice.is_out1 == true && choice.out_dtl == true">
             <el-checkbox v-for="type in all_type" :label="type" :key="type">{{type}}</el-checkbox>
           </el-checkbox-group>
+          <div style="height: 500px;width: 800px" ref="myChart3"></div>
+          <div style="height: 500px;width: 800px" ref="myChart4"></div>
         </div>
     </el-card>
 
@@ -236,10 +239,17 @@ export default {
         })
       })
     },
-    getDay() {
+    getDay(date) {
+      if(!date){date=7}
+
+      let date1 = new Date(date);
+      date=date1.getMonth()+1;
+      console.log(date)
+      console.log(date)
+      console.log(date)
       axios.post("/get/day/sum", {
             year: 2022,
-            month: 7,
+            month: date,
             userId: 1
           }
       ).then(data1 => {
@@ -251,6 +261,7 @@ export default {
         ).then(data => {
           console.log(data.data.data.day)
           console.log("new")
+          console.log(data.data.data.sum)
           let option = {
             title: {
               text: '当月收支'

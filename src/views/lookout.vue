@@ -252,6 +252,7 @@ export default {
       id:"",
       form: {createTime: "", type: "", way: "", sort: "", account: "", location:"",text: ""},
       dialogVisible: false,
+      input_beizhu:'',
     };
   },
 
@@ -260,7 +261,14 @@ export default {
   // },
 
   methods: {
-
+    find()
+    {
+      let bz=this.input_beizhu;
+      this.tableData=this.tableData.filter(function(item){
+          let includes = item.includes(bz);
+          return includes
+      })
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
