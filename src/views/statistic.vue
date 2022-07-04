@@ -7,19 +7,19 @@
       <div>
         <el-radio-group v-model="choice.type"
                         @change="getnow(choice.type)">
-          <el-radio-button label="日" ></el-radio-button>
+          <el-radio-button label="日"></el-radio-button>
           <el-radio-button label="月"></el-radio-button>
           <el-radio-button label="年"></el-radio-button>
         </el-radio-group>
-<!--        <div style="margin: 15px 0;"></div>
-        <el-switch
-            style="display: block"
-            v-model="choice.is_out0"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-text="支出"
-            inactive-text="收入">
-        </el-switch>-->
+        <!--        <div style="margin: 15px 0;"></div>
+                <el-switch
+                    style="display: block"
+                    v-model="choice.is_out0"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949"
+                    active-text="支出"
+                    inactive-text="收入">
+                </el-switch>-->
       </div>
       <div style="height: 500px;width: 800px" ref="myChart"></div>
 
@@ -46,50 +46,50 @@
       <div slot="header" class="clearfix">
         <span>check_type_cof</span>
       </div>
-        <div class="block">
-          <span class="demonstration">时间段</span>
-          <el-date-picker
-              v-model="choice.time"
-              type="monthrange"
-              range-separator="至"
-              start-placeholder="开始月份"
-              end-placeholder="结束月份">
-          </el-date-picker>
-          <div style="margin: 15px 0;"></div>
-          <el-switch
-              style="display: block"
-              v-model="choice.is_out1"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="支出"
-              inactive-text="收入">
-          </el-switch>
-          <div style="margin: 15px 0;"></div>
-          <el-switch
-              style="display: block"
-              v-model="choice.out_dtl"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="详细分类"
-              inactive-text="所有分类"
-              v-show= "choice.is_out1 == true">
-          </el-switch>
-          <div style="margin: 15px 0;"></div>
-          <el-checkbox :indeterminate="isIndeterminate"
-                       v-model="choice.checkAll"
-                       @change="handleCheckAllChange"
-                       v-show= "choice.is_out1 == true && choice.out_dtl == true">全选</el-checkbox>
-          <div style="margin: 15px 0;"></div>
-          <el-checkbox-group v-model="choice.checkList"
-                             @change="handleCheckedTypeChange"
-                             v-show= "choice.is_out1 == true && choice.out_dtl == true">
-            <el-checkbox v-for="type in all_type" :label="type" :key="type">{{type}}</el-checkbox>
-          </el-checkbox-group>
-          <div style="height: 500px;width: 800px" ref="myChart3"></div>
-          <div style="height: 500px;width: 800px" ref="myChart4"></div>
-        </div>
+      <div class="block">
+        <span class="demonstration">时间段</span>
+        <el-date-picker
+            v-model="choice.time"
+            type="monthrange"
+            range-separator="至"
+            start-placeholder="开始月份"
+            end-placeholder="结束月份">
+        </el-date-picker>
+        <div style="margin: 15px 0;"></div>
+        <el-switch
+            style="display: block"
+            v-model="choice.is_out1"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="支出"
+            inactive-text="收入">
+        </el-switch>
+        <div style="margin: 15px 0;"></div>
+        <el-switch
+            style="display: block"
+            v-model="choice.out_dtl"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="详细分类"
+            inactive-text="所有分类"
+            v-show="choice.is_out1 == true">
+        </el-switch>
+        <div style="margin: 15px 0;"></div>
+        <el-checkbox :indeterminate="isIndeterminate"
+                     v-model="choice.checkAll"
+                     @change="handleCheckAllChange"
+                     v-show="choice.is_out1 == true && choice.out_dtl == true">全选
+        </el-checkbox>
+        <el-button type="primary" @click="getLine()">查询</el-button>
+        <div style="margin: 15px 0;"></div>
+        <el-checkbox-group v-model="choice.checkList"
+                           @change="handleCheckedTypeChange"
+                           v-show="choice.is_out1 == true && choice.out_dtl == true">
+          <el-checkbox v-for="type in all_type" :label="type" :key="type">{{ type }}</el-checkbox>
+        </el-checkbox-group>
+        <div style="height: 500px;width: 800px" ref="myChart3"></div>
+      </div>
     </el-card>
-
 
 
   </div>
@@ -103,7 +103,7 @@
 
 import axios from "axios";
 
-const allType = ['餐饮','购物','生活','出行','大件消费','其他']
+const allType = ['餐饮', '购物', '生活', '出行', '大件消费', '其他']
 export default {
   name: "birthapply",
   components: {},
@@ -115,15 +115,15 @@ export default {
       },
       tableData: [],
       choice: {
-        type:'',
+        type: '',
         today: '',
-        month:'',
+        month: '',
         time: '',
-        is_out0:'',
-        is_out1:'',
-        out_dtl:'',
-        checkAll:'',
-        checkList:[]
+        is_out0: '',
+        is_out1: '',
+        out_dtl: '',
+        checkAll: '',
+        checkList: []
       },
       checkAll: false,
       all_type: allType,
@@ -152,12 +152,12 @@ export default {
       console.log(value);
     },
     check() {
-      let a={
-        start:this.choice.time[0],
-        end:this.choice.time[1],
-        is_out:this.choice.is_out1,   //1->支出
-        out_dtl:this.choice.out_dtl,  //1->输出sort
-        checkList:this.choice.checkList
+      let a = {
+        start: this.choice.time[0],
+        end: this.choice.time[1],
+        is_out: this.choice.is_out1,   //1->支出
+        out_dtl: this.choice.out_dtl,  //1->输出sort
+        checkList: this.choice.checkList
       }
       console.log(a)
 
@@ -194,39 +194,33 @@ export default {
 //           console.log(error)
 //         })
     },
-    getnow(input)
-    {
+    getnow(input) {
 
-      if(input=='日')
-      {
+      if (input == '日') {
         console.log(0)
         this.GetPie(0)
-      }
-      else if(input=='月')
-      {
+      } else if (input == '月') {
         console.log(1)
         this.GetPie(1)
-      }
-      else
-      {
+      } else {
         console.log(2)
         this.GetPie(2)
       }
     },
-/*    if(input==0)
-{
-  "/get/nowdaysum", {}
-}
-else if(input==1)
-{
-  "/get/nowmonthsum", {}
-}
-else
-{
-  "/get/nowyearsum", {}
-}*/
+    /*    if(input==0)
+    {
+      "/get/nowdaysum", {}
+    }
+    else if(input==1)
+    {
+      "/get/nowmonthsum", {}
+    }
+    else
+    {
+      "/get/nowyearsum", {}
+    }*/
     GetPie(input) {
-      if(input==0) {
+      if (input == 0) {
         console.log(0)
         console.log(0)
         console.log(0)
@@ -268,12 +262,8 @@ else
             chart.resize()
           })
         })
-      }
-      else if(input==1)
-      {
-        console.log(1)
-        console.log(1)
-        console.log(1)
+      } else if (input == 1) {
+
         axios.post(
             "/get/nowmonthsum", {}
         ).then(data => {
@@ -312,9 +302,7 @@ else
             chart.resize()
           })
         })
-      }
-      else
-      {
+      } else {
         console.log(2)
         console.log(2)
         console.log(2)
@@ -403,13 +391,13 @@ else
       })
     },
     getDay(date) {
-      if(!date){date=7}
+      if (!date) {
+        date = 7
+      }
 
       let date1 = new Date(date);
-      date=date1.getMonth()+1;
-      console.log(date)
-      console.log(date)
-      console.log(date)
+      date = date1.getMonth() + 1;
+
       axios.post("/get/day/sum", {
             year: 2022,
             month: date,
@@ -461,13 +449,63 @@ else
         })
       })
     },
-    getLineSon() {
-      axios.post("/get/typeson/sum", {
-            year: 2022,
-            month: 7,
-            day: 4,
-            userId: 0,
-            type:"餐饮"
+    // getLineSon() {
+    //   axios.post("/get/typeson/sum", {
+    //         year: 2022,
+    //         month: 7,
+    //         day: 4,
+    //         userId: 0,
+    //         type:"餐饮"
+    //       }
+    //   ).then(data => {
+    //     console.log(data)
+    //     let option = {
+    //       series: [
+    //         {
+    //           name: '访问来源',
+    //           type: 'pie',
+    //           radius: '55%',
+    //           data: data.data.data,
+    //           itemStyle: {
+    //             emphasis: {
+    //               shadowBlur: 10,
+    //               shadowOffsetX: 0,
+    //               shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //             },
+    //             normal: {
+    //               label: {
+    //                 show: true,
+    //                 //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+    //                 formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+    //               },
+    //               labelLine: {show: true}
+    //             }
+    //           }
+    //         }
+    //       ]
+    //
+    //     }
+    //
+    //     // 2.创建图表
+    //     let chart = this.$echarts.init(this.$refs.myChart4)
+    //
+    //     // 3，导入图表的配置
+    //     chart.setOption(option)
+    //
+    //     // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+    //     window.addEventListener('resize', function () {
+    //       chart.resize()
+    //     })
+    //   })
+    // },
+
+    getLine() {
+      axios.post("/get/pie", {
+            start: this.choice.time[0],
+            end: this.choice.time[1],
+            is_out: this.choice.is_out1,   //1->支出
+            out_dtl: this.choice.out_dtl,  //1->输出sort
+            checkList: this.choice.checkList
           }
       ).then(data => {
         console.log(data)
@@ -499,7 +537,7 @@ else
         }
 
         // 2.创建图表
-        let chart = this.$echarts.init(this.$refs.myChart4)
+        let chart = this.$echarts.init(this.$refs.myChart3)
 
         // 3，导入图表的配置
         chart.setOption(option)
@@ -511,56 +549,7 @@ else
       })
     },
 
-  getLine() {
-    axios.post("/get/type/sum", {
-          year: 2022,
-          month: 7,
-          day: -1,
-          userId: 0
-        }
-    ).then(data => {
-      console.log(data)
-      let option = {
-        series: [
-          {
-            name: '访问来源',
-            type: 'pie',
-            radius: '55%',
-            data: data.data.data,
-            itemStyle: {
-              emphasis: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              },
-              normal: {
-                label: {
-                  show: true,
-                  //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
-                  formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
-                },
-                labelLine: {show: true}
-              }
-            }
-          }
-        ]
-
-      }
-
-      // 2.创建图表
-      let chart = this.$echarts.init(this.$refs.myChart3)
-
-      // 3，导入图表的配置
-      chart.setOption(option)
-
-      // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
-      window.addEventListener('resize', function () {
-        chart.resize()
-      })
-    })
   },
-
-},
 };
 </script>
 <style scoped>
