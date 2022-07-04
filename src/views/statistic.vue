@@ -204,7 +204,7 @@ export default {
       })
     },
     getLineSon() {
-      axios.post("/get/typeSon/sum", {
+      axios.post("/get/typeson/sum", {
             year: 2022,
             month: 7,
             day: 4,
@@ -300,7 +300,8 @@ export default {
         chart.resize()
       })
     })
-  }
+  },
+
 },
 };
 </script>

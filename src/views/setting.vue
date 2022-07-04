@@ -23,6 +23,9 @@
         </el-form-item>
       </el-form>
     </el-card>
+    <el-card>
+      <el-button type="primary" @click="exp">导出</el-button>
+    </el-card>
 
 
     <el-card class="box-card" style="width: 750px" shadow="hover">
@@ -219,8 +222,10 @@ export default {
     },
     onSubmit() {
 
+    },
+    exp() {
+      window.open("http://localhost:8080/download")
     }
-
     // acceptrebirth(id) {
     //   axios.post(
     //       "/change"
