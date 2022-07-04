@@ -288,6 +288,9 @@ export default {
     find(input1,input2){
       let output = this.tableData.filter(item => {
         if(!item.beizhu){
+          if(!input1){
+            return 1
+          }
           return false
         }
         let b=item.beizhu.includes(input1)
@@ -296,12 +299,16 @@ export default {
       this.tableData=output
       output = this.tableData.filter(item => {
         if(!item.location){
+          if(!input2){
+            return 1
+          }
           return false
         }
         let b=item.location.includes(input2)
         return b
       })
       this.tableData=output
+      this.searchVisible=false
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);

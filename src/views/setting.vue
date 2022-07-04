@@ -3,7 +3,7 @@
     <el-card class="box-card" style="width: 750px" shadow="hover">
     <div slot="header" class="clearfix" >
       <span>额度设置</span>
-      <el-button style="float: right; padding: 3px 0" type="text">提交</el-button>
+      <el-button style="float: right; padding: 3px 0" type="text" @click="onSubmit0(formInline.month_money,formInline.year_money)">提交</el-button>
     </div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top:30px">
         <el-form-item label="本月设置额度">
@@ -62,104 +62,6 @@
     </el-card>
   </div>
 </template>
-<!--<template>
-<div>
-  <el-form :inline="true" :model="formInline" class="demo-form-inline">
-  <el-form-item label="客户名称">
-    <el-input v-model="filter.name" placeholder="客户名称"></el-input>
-  </el-form-item>
-   <el-form-item label="审核状态">
-    <el-select v-model="filter.check" placeholder="审核状态">
-      <el-option label="已审核" value="1"></el-option>
-      <el-option label="未审核" value="0"></el-option>
-    </el-select>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="check">查询</el-button>
-  </el-form-item>
-</el-form>
-
-<el-table
-    :data="tableData"
-    style="width: 90%;margin-top: 20px;">
-    <el-table-column type="expand">
-      <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="违约重生id">
-            <span>{{ props.row.id }}</span>
-          </el-form-item>
-          <el-form-item label="违约名称">
-            <span>{{ props.row.userName }}</span>
-          </el-form-item>
-          <el-form-item label="最新外部等级">
-            <span>{{ props.row.outLevel }}</span>
-          </el-form-item>
-          <el-form-item label="违约原因">
-            <span>{{ props.row.reason }}</span>
-          </el-form-item>
-          <el-form-item label="违约严重性">
-            <span>{{ props.row.seriousness }}</span>
-          </el-form-item>
-          <el-form-item label="备注">
-            <span>{{ props.row.beizhu }}</span>
-          </el-form-item>
-          <el-form-item label="认定人">
-            <span>{{ props.row.firmpeople }}</span>
-          </el-form-item>
-          <el-form-item label="认定申请时间">
-            <span>{{ props.row.firmapplytime }}</span>
-          </el-form-item>
-          <el-form-item label="认定审核时间">
-            <span>{{ props.row.firmchecktime }}</span>
-          </el-form-item>
-          <el-form-item label="重生原因">
-            <span>{{ props.row.reason }}</span>
-          </el-form-item>
-
-
-
-        </el-form>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="违约重生id"
-      prop="id"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      label="客户名称"
-      prop="userName"
-      width="100">
-    </el-table-column>
-    <el-table-column
-      label="违约严重性"
-      prop="seriousness"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      label="违约原因"
-      prop="reason" width="300">
-    </el-table-column>
-
-    <el-table-column
-      label="重生原因"
-      prop="reason" width="300">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="100">
-      <template slot-scope="scope">
-        <el-button type="text" size="small" @click="acceptrebirth(scope.row.id)">接受</el-button>
-        <el-button type="text" size="small" @click="refuserebirth(scope.row.id)">拒绝</el-button>
-      </template>
-    </el-table-column>
-
-  </el-table>
-
-</div>
-
-</template>-->
 
 <script>
 // @ is an alias to /src
@@ -189,7 +91,12 @@ export default {
 
     };
   },
+  mounted(){
+    this.dl_month_limit()
+    this.dl_year_limit()
+  },
   methods: {
+
     check() {
 
       axios.post(
@@ -223,8 +130,43 @@ export default {
             console.log(error)
           })
     },
-    onSubmit() {
-
+    dl_month_limit()
+    {
+      axios.post(
+          "/setmonthlimit", {}
+      ).then(data => {
+            console.log(data)
+            this.formInline.month = data.data
+          }
+      )
+    },
+    dl_year_limit()
+    {
+      axios.post(
+          "/setyearlimit", {}
+      ).then(data => {
+            console.log(data)
+            this.formInline.year = data.data
+          }
+      )
+    },
+    onSubmit0(input0,input1) {
+      if(!input0)
+      {
+        axios.post("/setmonthlimit", {
+          monthlimit: this.month_money,
+        })
+      }
+      if(!input1)
+      {
+        axios.post("/setyearlimit", {
+          yearlimit: this.year_money,
+        })
+      }
+      this.$notify({
+        title: '提交成功',
+        type: 'success'
+      });
     },
     exp() {
       window.open("http://47.96.72.124:8080/download")
