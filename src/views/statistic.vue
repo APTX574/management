@@ -13,6 +13,9 @@
         </el-date-picker>
       </div>
       <div style="height: 500px;width: 800px" ref="myChart"></div>
+      <div style="height: 500px;width: 800px" ref="myChart2"></div>
+      <div style="height: 500px;width: 800px" ref="myChart3"></div>
+      <div style="height: 500px;width: 800px" ref="myChart4"></div>
     </el-card>
     <el-card shadow="hover">
       <div slot="header" class="clearfix">
@@ -66,7 +69,7 @@ export default {
     // 1.配置图表的数据和参数
     this.getDay()
     this.getLine()
-
+    this.getLineSon()
   },
   methods: {
     check() {
@@ -200,12 +203,13 @@ export default {
         })
       })
     },
-    getLine() {
-      axios.post("/get/type/sum", {
+    getLineSon() {
+      axios.post("/get/typeSon/sum", {
             year: 2022,
             month: 7,
-            day: -1,
-            userId: 0
+            day: 4,
+            userId: 0,
+            type:"餐饮"
           }
       ).then(data => {
         console.log(data)
@@ -237,7 +241,7 @@ export default {
         }
 
         // 2.创建图表
-        let chart = this.$echarts.init(this.$refs.myChart3)
+        let chart = this.$echarts.init(this.$refs.myChart4)
 
         // 3，导入图表的配置
         chart.setOption(option)
@@ -247,9 +251,57 @@ export default {
           chart.resize()
         })
       })
-    }
+    },
 
-  },
+  getLine() {
+    axios.post("/get/type/sum", {
+          year: 2022,
+          month: 7,
+          day: -1,
+          userId: 0
+        }
+    ).then(data => {
+      console.log(data)
+      let option = {
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            data: data.data.data,
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              },
+              normal: {
+                label: {
+                  show: true,
+                  //formatter: '{b} : {c} ({d}%)' //带当前图例名 + 百分比
+                  formatter: '{b} : \n{c}元 ({d}%)' //只要百分比
+                },
+                labelLine: {show: true}
+              }
+            }
+          }
+        ]
+
+      }
+
+      // 2.创建图表
+      let chart = this.$echarts.init(this.$refs.myChart3)
+
+      // 3，导入图表的配置
+      chart.setOption(option)
+
+      // 4添加窗口大小改变监听事件，当窗口大小改变时，图表会重新绘制，自适应窗口大小
+      window.addEventListener('resize', function () {
+        chart.resize()
+      })
+    })
+  }
+},
 };
 </script>
 <style scoped>
