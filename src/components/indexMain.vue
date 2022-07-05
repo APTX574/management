@@ -39,7 +39,7 @@ export default {
 .container {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-rows: 400px 400px 400px;
+  grid-template-rows:100% 100% 100%;
   background-color: rgb(235, 232, 232);
 }
 </style>

@@ -359,7 +359,7 @@ export default {
       })
     },
     getDay(date) {
-      if (date==0) {
+      if (date == 0) {
         date = 7
       } else {
         let date1 = new Date(date);
@@ -467,7 +467,7 @@ export default {
     //   })
     // },
 
-    getLine() {
+    getLine: function () {
       axios.post("/get/pie", {
             start: this.choice.time[0],
             end: this.choice.time[1],
@@ -477,6 +477,20 @@ export default {
           }
       ).then(data => {
         console.log(data)
+        console.log(this.choice.out_dtl)
+        if (this.choice.out_dtl) {
+          data.data.data = data.data.data.filter(data => {
+            let type = ["餐饮", "购物", "生活", "出行", "大件"]
+            console.log(data.name)
+            let b = type.includes(data.name);
+            console.log(b)
+            if (b==true) {
+              return false;
+            } else {
+              return true;
+            }
+          })
+        }
         let option = {
           series: [
             {

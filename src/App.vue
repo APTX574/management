@@ -29,7 +29,7 @@ export default {
 	color: #2c3e50;
 	margin-top: 0px;
   height: 100%;
-  background: url(~@/assets/BG.jpg) no-repeat center/cover;
+  background: url(~@/assets/BG.jpg) repeat center/cover;
 }
 #main {
 	margin: auto;
